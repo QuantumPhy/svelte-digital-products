@@ -33,26 +33,26 @@ import { base } from '$app/paths';
 				</div>
 			</DropdownMenu.Label>
 			<DropdownMenu.Separator />
-			<DropdownMenu.Item href={`${base}/account`}>
+			<DropdownMenu.Item>{#snippet child({ props })}<a {...props} href="{base}/account">
 				<User class="mr-2 h-4 w-4" />
 				<span>My Account</span>
-			</DropdownMenu.Item>
-			<DropdownMenu.Item href={`${base}/account/orders`}>
+			</a>{/snippet}</DropdownMenu.Item>
+			<DropdownMenu.Item>{#snippet child({ props })}<a {...props} href="{base}/account/orders">
 				<ShoppingBag class="mr-2 h-4 w-4" />
 				<span>Orders</span>
-			</DropdownMenu.Item>
-			<DropdownMenu.Item href={`${base}/wishlist`}>
+			</a>{/snippet}</DropdownMenu.Item>
+			<DropdownMenu.Item>{#snippet child({ props })}<a {...props} href="{base}/wishlist">
 				<Heart class="mr-2 h-4 w-4" />
 				<span>Wishlist</span>
-			</DropdownMenu.Item>
-			<DropdownMenu.Item href={`${base}/account/billing`}>
+			</a>{/snippet}</DropdownMenu.Item>
+			<DropdownMenu.Item>{#snippet child({ props })}<a {...props} href="{base}/account/billing">
 				<CreditCard class="mr-2 h-4 w-4" />
 				<span>Billing</span>
-			</DropdownMenu.Item>
-			<DropdownMenu.Item href={`${base}/account/settings`}>
+			</a>{/snippet}</DropdownMenu.Item>
+			<DropdownMenu.Item>{#snippet child({ props })}<a {...props} href="{base}/account/settings">
 				<Settings class="mr-2 h-4 w-4" />
 				<span>Settings</span>
-			</DropdownMenu.Item>
+			</a>{/snippet}</DropdownMenu.Item>
 			<DropdownMenu.Separator />
 			<DropdownMenu.Item
 				onclick={() => userStore.logout()}
@@ -65,7 +65,7 @@ import { base } from '$app/paths';
 	</DropdownMenu.Root>
 {:else}
 	<div class="flex items-center gap-2">
-		<Button variant="ghost" href={`${base}/auth/login`}>Sign in</Button>
-		<Button href={`${base}/auth/register`}>Sign up</Button>
+		<Button variant="ghost" href="{base}/auth/login">Sign in</Button>
+		<Button href="{base}/auth/register">Sign up</Button>
 	</div>
 {/if}

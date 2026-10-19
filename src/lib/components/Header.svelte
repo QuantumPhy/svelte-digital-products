@@ -47,7 +47,7 @@ import { base } from '$app/paths';
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-between h-16 lg:h-20">
       <!-- Logo -->
-      <a href={`${base}/`} class="flex items-center gap-2 group">
+      <a href="{base}/" class="flex items-center gap-2 group">
         <div class="relative w-10 h-10 rounded-xl bg-gradient-to-br from-primary via-accent to-cyber-pink flex items-center justify-center shadow-lg shadow-primary/25 group-hover:shadow-primary/40 transition-shadow">
           <Download class="w-5 h-5 text-white" />
           <div class="absolute inset-0 rounded-xl bg-gradient-to-br from-primary via-accent to-cyber-pink opacity-0 group-hover:opacity-100 blur-lg transition-opacity"></div>
@@ -83,7 +83,7 @@ import { base } from '$app/paths';
               {/each}
               <div class="border-t border-border mt-2 pt-2">
                 <a
-                  href={`${base}/products`}
+                  href="{base}/products"
                   class="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-primary hover:bg-primary/10 rounded-lg transition-colors"
                 >
                   View All Products
@@ -111,13 +111,13 @@ import { base } from '$app/paths';
         </Button>
 
         <!-- My Downloads -->
-        <Button variant="ghost" size="sm" class="hidden md:flex gap-2 hover:bg-primary/10 hover:text-primary" href={`${base}/downloads`}>
+        <Button variant="ghost" size="sm" class="hidden md:flex gap-2 hover:bg-primary/10 hover:text-primary" href="{base}/downloads">
           <Download class="w-4 h-4" />
           <span class="hidden lg:inline">My Downloads</span>
         </Button>
 
         <!-- Cart -->
-        <Button variant="ghost" size="icon" class="relative hover:bg-primary/10 hover:text-primary" href={`${base}/cart`}>
+        <Button variant="ghost" size="icon" class="relative hover:bg-primary/10 hover:text-primary" href="{base}/cart">
           <ShoppingCart class="w-5 h-5" />
           <span class="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-primary to-accent text-white text-xs font-bold rounded-full flex items-center justify-center shadow-lg">
             3
@@ -125,12 +125,12 @@ import { base } from '$app/paths';
         </Button>
 
         <!-- User Account -->
-        <Button variant="ghost" size="icon" class="hidden sm:flex hover:bg-primary/10 hover:text-primary" href={`${base}/account`}>
+        <Button variant="ghost" size="icon" class="hidden sm:flex hover:bg-primary/10 hover:text-primary" href="{base}/account">
           <User class="w-5 h-5" />
         </Button>
 
         <!-- CTA Button -->
-        <Button class="hidden md:flex bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg shadow-primary/25 text-white border-0" href={`${base}/products`}>
+        <Button class="hidden md:flex bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg shadow-primary/25 text-white border-0" href="{base}/products">
           Browse Products
         </Button>
 
@@ -193,7 +193,7 @@ import { base } from '$app/paths';
                   </a>
                 {/each}
                 <a
-                  href={`${base}/downloads`}
+                  href="{base}/downloads"
                   class="flex items-center gap-2 px-3 py-2 font-medium hover:text-primary transition-colors rounded-lg hover:bg-primary/5"
                 >
                   <Download class="w-4 h-4" />
@@ -203,7 +203,7 @@ import { base } from '$app/paths';
                 <div class="border-t border-border my-4"></div>
 
                 <!-- CTA -->
-                <Button class="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg shadow-primary/25 text-white border-0" href={`${base}/products`}>
+                <Button class="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg shadow-primary/25 text-white border-0" href="{base}/products">
                   Browse All Products
                 </Button>
               </div>

@@ -1,4 +1,5 @@
 <script lang="ts">
+import { base } from '$app/paths';
   import { Button } from "$lib/components/ui/button";
   import * as Card from "$lib/components/ui/card";
   import { Badge } from "$lib/components/ui/badge";
@@ -483,7 +484,7 @@
                       <span class="text-xl font-bold text-primary">${product.price}</span>
                       <span class="text-sm text-muted-foreground line-through ml-1">${product.originalPrice}</span>
                     </div>
-                    <Button size="sm" variant="outline" class="border-primary/30 hover:bg-primary hover:text-white hover:border-primary" href="/products/{product.id}">
+                    <Button size="sm" variant="outline" class="border-primary/30 hover:bg-primary hover:text-white hover:border-primary" href="{base}/products/{product.id}">
                       View Details
                     </Button>
                   </div>
@@ -546,7 +547,7 @@
                         <Button variant="outline" size="icon" class="border-primary/30">
                           <Heart class="w-4 h-4" />
                         </Button>
-                        <Button class="bg-gradient-to-r from-primary to-accent text-white border-0" href="/products/{product.id}">
+                        <Button class="bg-gradient-to-r from-primary to-accent text-white border-0" href="{base}/products/{product.id}">
                           View Details
                         </Button>
                       </div>

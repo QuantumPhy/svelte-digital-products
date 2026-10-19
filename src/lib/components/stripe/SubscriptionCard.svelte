@@ -1,5 +1,4 @@
 <script lang="ts">
-import { base } from '$app/paths';
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
 	import { Check, Loader2 } from 'lucide-svelte';
@@ -61,7 +60,7 @@ import { base } from '$app/paths';
 				window.location.href = `/checkout/subscription?client_secret=${data.clientSecret}&subscription_id=${data.subscriptionId}`;
 			} else if (data.status === 'active') {
 				// Trial or no payment required
-				window.location.href = `${base}/account?subscription=success`;
+				window.location.href = '/account?subscription=success';
 			}
 		} catch (err) {
 			error = 'An error occurred. Please try again.';

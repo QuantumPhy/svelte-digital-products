@@ -1,4 +1,5 @@
 <script lang="ts">
+import { base } from '$app/paths';
   import { Button } from "$lib/components/ui/button";
   import * as Card from "$lib/components/ui/card";
   import { Badge } from "$lib/components/ui/badge";
@@ -297,7 +298,7 @@
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
       {#each popularArticles as article}
-        <a href="/support/{article.slug}" class="group flex items-center justify-between p-4 bg-card/50 border border-border/50 rounded-xl hover:border-primary/50 hover:bg-card transition-all">
+        <a href="{base}/support/{article.slug}" class="group flex items-center justify-between p-4 bg-card/50 border border-border/50 rounded-xl hover:border-primary/50 hover:bg-card transition-all">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
               <FileText class="w-5 h-5 text-primary" />

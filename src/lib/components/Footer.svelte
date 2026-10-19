@@ -117,7 +117,7 @@ import { base } from '$app/paths';
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12">
       <!-- Brand Column -->
       <div class="col-span-2 md:col-span-3 lg:col-span-1">
-        <a href={`${base}/`} class="flex items-center gap-2 mb-4 group">
+        <a href="{base}/" class="flex items-center gap-2 mb-4 group">
           <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary via-accent to-cyber-pink flex items-center justify-center shadow-lg shadow-primary/25">
             <Download class="w-5 h-5 text-white" />
           </div>

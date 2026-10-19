@@ -30,7 +30,7 @@ import { base } from '$app/paths';
 				return;
 			}
 
-			window.location.href = `${base}/`;
+			window.location.href = '/';
 		} catch (err) {
 			error = 'An error occurred. Please try again.';
 		} finally {
@@ -112,7 +112,7 @@ import { base } from '$app/paths';
 				<div class="space-y-2">
 					<div class="flex justify-between">
 						<Label for="password">Password</Label>
-						<a href={`${base}/auth/forgot-password`} class="text-sm text-primary hover:underline">
+						<a href="{base}/auth/forgot-password" class="text-sm text-primary hover:underline">
 							Forgot password?
 						</a>
 					</div>
@@ -142,7 +142,7 @@ import { base } from '$app/paths';
 
 		<p class="text-center text-sm text-muted-foreground">
 			Don't have an account?
-			<a href={`${base}/auth/register`} class="text-primary hover:underline font-medium">
+			<a href="{base}/auth/register" class="text-primary hover:underline font-medium">
 				Sign up
 			</a>
 		</p>

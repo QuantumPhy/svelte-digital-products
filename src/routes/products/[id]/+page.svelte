@@ -177,11 +177,11 @@ Whether you're starting fresh or looking to level up your skills, this course pr
 <section class="py-4 border-b border-border/50 bg-muted/30">
   <div class="container mx-auto px-4">
     <nav class="flex items-center gap-2 text-sm text-muted-foreground">
-      <a href={`${base}/`} class="hover:text-primary transition-colors">Home</a>
+      <a href="{base}/" class="hover:text-primary transition-colors">Home</a>
       <ChevronRight class="w-4 h-4" />
-      <a href={`${base}/products`} class="hover:text-primary transition-colors">Products</a>
+      <a href="{base}/products" class="hover:text-primary transition-colors">Products</a>
       <ChevronRight class="w-4 h-4" />
-      <a href={`${base}/products?category=courses`} class="hover:text-primary transition-colors">{product.category}</a>
+      <a href="{base}/products?category=courses" class="hover:text-primary transition-colors">{product.category}</a>
       <ChevronRight class="w-4 h-4" />
       <span class="text-foreground">{product.name}</span>
     </nav>
@@ -289,7 +289,7 @@ Whether you're starting fresh or looking to level up your skills, this course pr
 
         <!-- Actions -->
         <div class="flex flex-col sm:flex-row gap-3 mb-6">
-          <Button size="lg" class="flex-1 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg shadow-primary/25 text-white border-0 h-14" href={`${base}/cart`}>
+          <Button size="lg" class="flex-1 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg shadow-primary/25 text-white border-0 h-14" href="{base}/cart">
             <ShoppingCart class="w-5 h-5 mr-2" />
             Add to Cart
           </Button>
@@ -544,14 +544,14 @@ Whether you're starting fresh or looking to level up your skills, this course pr
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-between mb-8">
       <h2 class="text-2xl font-bold">You Might Also Like</h2>
-      <Button variant="outline" class="border-primary/30" href={`${base}/products`}>
+      <Button variant="outline" class="border-primary/30" href="{base}/products">
         View All
         <ArrowRight class="w-4 h-4 ml-2" />
       </Button>
     </div>
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
       {#each relatedProducts as product}
-        <a href="/products/{product.id}" class="group">
+        <a href="{base}/products/{product.id}" class="group">
           <Card.Root class="overflow-hidden border-border/50 hover:border-primary/50 transition-all hover:shadow-xl hover:shadow-primary/10 bg-card/50">
             <div class="relative overflow-hidden">
               <img

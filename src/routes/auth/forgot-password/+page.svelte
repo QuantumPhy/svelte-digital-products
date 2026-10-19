@@ -49,7 +49,7 @@ import { base } from '$app/paths';
 					<p class="text-muted-foreground">
 						If an account exists for {email}, you'll receive a password reset link shortly.
 					</p>
-					<Button href={`${base}/auth/login`} variant="outline" class="w-full">
+					<Button href="{base}/auth/login" variant="outline" class="w-full">
 						<ArrowLeft class="h-4 w-4 mr-2" />
 						Back to Login
 					</Button>
@@ -86,7 +86,7 @@ import { base } from '$app/paths';
 						{/if}
 					</Button>
 
-					<Button href={`${base}/auth/login`} variant="ghost" class="w-full">
+					<Button href="{base}/auth/login" variant="ghost" class="w-full">
 						<ArrowLeft class="h-4 w-4 mr-2" />
 						Back to Login
 					</Button>

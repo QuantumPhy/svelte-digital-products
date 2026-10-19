@@ -11,7 +11,7 @@ import { base } from '$app/paths';
 
 <div class="min-h-screen bg-background">
 	<div class="container mx-auto px-4 py-16 max-w-4xl">
-		<Button variant="ghost" href={`${base}/`} class="mb-8">
+		<Button variant="ghost" href="{base}/" class="mb-8">
 			<ArrowLeft class="h-4 w-4 mr-2" />
 			Back to Home
 		</Button>

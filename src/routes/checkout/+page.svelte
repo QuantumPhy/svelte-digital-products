@@ -63,7 +63,7 @@ import { base } from '$app/paths';
 <section class="py-4 border-b border-border/50 bg-muted/30">
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-between">
-      <Button variant="ghost" size="sm" href={`${base}/cart`}>
+      <Button variant="ghost" size="sm" href="{base}/cart">
         <ArrowLeft class="w-4 h-4 mr-2" />
         Back to Cart
       </Button>
@@ -321,7 +321,7 @@ import { base } from '$app/paths';
               <div class="flex items-start gap-2">
                 <Checkbox id="agree-to-terms" bind:checked={agreeToTerms} class="mt-1" />
                 <label for="agree-to-terms" class="text-sm text-muted-foreground">
-                  I agree to the <a href={`${base}/terms`} class="text-primary hover:underline">Terms of Service</a> and <a href={`${base}/licensing`} class="text-primary hover:underline">License Agreement</a>
+                  I agree to the <a href="{base}/terms" class="text-primary hover:underline">Terms of Service</a> and <a href="{base}/licensing" class="text-primary hover:underline">License Agreement</a>
                 </label>
               </div>
             </Card.Content>
@@ -375,11 +375,11 @@ import { base } from '$app/paths';
               </div>
 
               <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button class="bg-gradient-to-r from-primary to-accent text-white border-0" size="lg" href={`${base}/downloads`}>
+                <Button class="bg-gradient-to-r from-primary to-accent text-white border-0" size="lg" href="{base}/downloads">
                   <Download class="w-5 h-5 mr-2" />
                   Go to My Downloads
                 </Button>
-                <Button variant="outline" class="border-primary/30" size="lg" href={`${base}/products`}>
+                <Button variant="outline" class="border-primary/30" size="lg" href="{base}/products">
                   Continue Shopping
                 </Button>
               </div>

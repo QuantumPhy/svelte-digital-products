@@ -43,7 +43,7 @@ import { base } from '$app/paths';
 				return;
 			}
 
-			window.location.href = `${base}/`;
+			window.location.href = '/';
 		} catch (err) {
 			error = 'An error occurred. Please try again.';
 		} finally {
@@ -179,16 +179,16 @@ import { base } from '$app/paths';
 
 				<p class="text-xs text-center text-muted-foreground">
 					By creating an account, you agree to our
-					<a href={`${base}/terms`} class="text-primary hover:underline">Terms of Service</a>
+					<a href="{base}/terms" class="text-primary hover:underline">Terms of Service</a>
 					and
-					<a href={`${base}/privacy`} class="text-primary hover:underline">Privacy Policy</a>
+					<a href="{base}/privacy" class="text-primary hover:underline">Privacy Policy</a>
 				</p>
 			</form>
 		</div>
 
 		<p class="text-center text-sm text-muted-foreground">
 			Already have an account?
-			<a href={`${base}/auth/login`} class="text-primary hover:underline font-medium">
+			<a href="{base}/auth/login" class="text-primary hover:underline font-medium">
 				Sign in
 			</a>
 		</p>
