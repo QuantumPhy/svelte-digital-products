@@ -1,4 +1,5 @@
 <script lang="ts">
+import { base } from '$app/paths';
   import { Button } from "$lib/components/ui/button";
   import * as Card from "$lib/components/ui/card";
   import { Badge } from "$lib/components/ui/badge";
@@ -335,7 +336,7 @@
         <p class="text-muted-foreground mb-6">
           {searchQuery ? "Try adjusting your search query" : "Start by browsing our product catalog"}
         </p>
-        <Button class="bg-gradient-to-r from-primary to-accent text-white border-0" href="/products">
+        <Button class="bg-gradient-to-r from-primary to-accent text-white border-0" href={`${base}/products`}>
           Browse Products
         </Button>
       </div>
@@ -356,7 +357,7 @@
           <p class="text-sm text-muted-foreground mb-4">
             Having trouble with your downloads? Check our FAQ or contact support.
           </p>
-          <Button variant="outline" size="sm" class="border-primary/30" href="/support">
+          <Button variant="outline" size="sm" class="border-primary/30" href={`${base}/support`}>
             Get Support
           </Button>
         </Card.Content>
@@ -371,7 +372,7 @@
           <p class="text-sm text-muted-foreground mb-4">
             View and manage your license keys, upgrade to commercial licenses.
           </p>
-          <Button variant="outline" size="sm" class="border-primary/30" href="/licensing">
+          <Button variant="outline" size="sm" class="border-primary/30" href={`${base}/licensing`}>
             Manage Licenses
           </Button>
         </Card.Content>

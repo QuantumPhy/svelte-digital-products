@@ -1,4 +1,5 @@
 <script lang="ts">
+import { base } from '$app/paths';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
@@ -42,7 +43,7 @@
 				return;
 			}
 
-			window.location.href = '/';
+			window.location.href = `${base}/`;
 		} catch (err) {
 			error = 'An error occurred. Please try again.';
 		} finally {
@@ -178,16 +179,16 @@
 
 				<p class="text-xs text-center text-muted-foreground">
 					By creating an account, you agree to our
-					<a href="/terms" class="text-primary hover:underline">Terms of Service</a>
+					<a href={`${base}/terms`} class="text-primary hover:underline">Terms of Service</a>
 					and
-					<a href="/privacy" class="text-primary hover:underline">Privacy Policy</a>
+					<a href={`${base}/privacy`} class="text-primary hover:underline">Privacy Policy</a>
 				</p>
 			</form>
 		</div>
 
 		<p class="text-center text-sm text-muted-foreground">
 			Already have an account?
-			<a href="/auth/login" class="text-primary hover:underline font-medium">
+			<a href={`${base}/auth/login`} class="text-primary hover:underline font-medium">
 				Sign in
 			</a>
 		</p>

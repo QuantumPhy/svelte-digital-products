@@ -1,4 +1,5 @@
 <script lang="ts">
+import { base } from '$app/paths';
 	import { page } from '$app/stores';
 	import { Button } from '$lib/components/ui/button';
 	import { CheckCircle, Package, ArrowRight, Loader2 } from 'lucide-svelte';
@@ -64,7 +65,7 @@
 				<div class="bg-destructive/10 text-destructive p-4 rounded-lg">
 					{error}
 				</div>
-				<Button href="/">Return to Home</Button>
+				<Button href={`${base}/`}>Return to Home</Button>
 			</div>
 		{:else}
 			<div class="bg-card border rounded-xl p-8 shadow-sm space-y-6">
@@ -102,11 +103,11 @@
 				{/if}
 
 				<div class="space-y-3">
-					<Button href="/account/orders" class="w-full">
+					<Button href={`${base}/account/orders`} class="w-full">
 						<Package class="h-4 w-4 mr-2" />
 						View Order
 					</Button>
-					<Button variant="outline" href="/shop" class="w-full">
+					<Button variant="outline" href={`${base}/shop`} class="w-full">
 						Continue Shopping
 						<ArrowRight class="h-4 w-4 ml-2" />
 					</Button>
@@ -115,7 +116,7 @@
 
 			<p class="text-sm text-muted-foreground">
 				Questions about your order?
-				<a href="/contact" class="text-primary hover:underline">Contact us</a>
+				<a href={`${base}/contact`} class="text-primary hover:underline">Contact us</a>
 			</p>
 		{/if}
 	</div>

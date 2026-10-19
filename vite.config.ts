@@ -6,6 +6,6 @@ export default defineConfig({
 	plugins: [tailwindcss(), sveltekit()],
   server: { fs: { deny: [".env", ".env.*", ".git", "**/.ssh/**", "**/*.pem", "**/*.key"] } },
 	preview: {
-		allowedHosts: true
+		allowedHosts: ['localhost', '127.0.0.1']
 	}
 });

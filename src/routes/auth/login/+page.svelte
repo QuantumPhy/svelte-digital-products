@@ -1,4 +1,5 @@
 <script lang="ts">
+import { base } from '$app/paths';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
@@ -29,7 +30,7 @@
 				return;
 			}
 
-			window.location.href = '/';
+			window.location.href = `${base}/`;
 		} catch (err) {
 			error = 'An error occurred. Please try again.';
 		} finally {
@@ -111,7 +112,7 @@
 				<div class="space-y-2">
 					<div class="flex justify-between">
 						<Label for="password">Password</Label>
-						<a href="/auth/forgot-password" class="text-sm text-primary hover:underline">
+						<a href={`${base}/auth/forgot-password`} class="text-sm text-primary hover:underline">
 							Forgot password?
 						</a>
 					</div>
@@ -141,7 +142,7 @@
 
 		<p class="text-center text-sm text-muted-foreground">
 			Don't have an account?
-			<a href="/auth/register" class="text-primary hover:underline font-medium">
+			<a href={`${base}/auth/register`} class="text-primary hover:underline font-medium">
 				Sign up
 			</a>
 		</p>

@@ -1,4 +1,5 @@
 <script lang="ts">
+import { base } from '$app/paths';
   import { Button } from "$lib/components/ui/button";
   import { Separator } from "$lib/components/ui/separator";
   import {
@@ -16,33 +17,33 @@
   } from "lucide-svelte";
 
   const productCategories = [
-    { href: "/products?category=software", label: "Software" },
-    { href: "/products?category=templates", label: "Templates" },
-    { href: "/products?category=courses", label: "Online Courses" },
-    { href: "/products?category=ebooks", label: "Ebooks & Guides" },
-    { href: "/products?category=assets", label: "Digital Assets" }
+    { href: `${base}/products?category=software`, label: "Software" },
+    { href: `${base}/products?category=templates`, label: "Templates" },
+    { href: `${base}/products?category=courses`, label: "Online Courses" },
+    { href: `${base}/products?category=ebooks`, label: "Ebooks & Guides" },
+    { href: `${base}/products?category=assets`, label: "Digital Assets" }
   ];
 
   const supportLinks = [
-    { href: "/support", label: "Help Center" },
-    { href: "/support#faq", label: "FAQ" },
-    { href: "/downloads", label: "My Downloads" },
-    { href: "/licensing", label: "Licensing Info" },
-    { href: "/support#refunds", label: "Refund Policy" }
+    { href: `${base}/support`, label: "Help Center" },
+    { href: `${base}/support#faq`, label: "FAQ" },
+    { href: `${base}/downloads`, label: "My Downloads" },
+    { href: `${base}/licensing`, label: "Licensing Info" },
+    { href: `${base}/support#refunds`, label: "Refund Policy" }
   ];
 
   const companyLinks = [
-    { href: "/about", label: "About Us" },
-    { href: "/creators", label: "For Creators" },
-    { href: "/affiliate", label: "Affiliate Program" },
-    { href: "/blog", label: "Blog" },
-    { href: "/contact", label: "Contact" }
+    { href: `${base}/about`, label: "About Us" },
+    { href: `${base}/creators`, label: "For Creators" },
+    { href: `${base}/affiliate`, label: "Affiliate Program" },
+    { href: `${base}/blog`, label: "Blog" },
+    { href: `${base}/contact`, label: "Contact" }
   ];
 
   const legalLinks = [
-    { href: "/terms", label: "Terms of Service" },
-    { href: "/privacy", label: "Privacy Policy" },
-    { href: "/cookies", label: "Cookie Policy" }
+    { href: `${base}/terms`, label: "Terms of Service" },
+    { href: `${base}/privacy`, label: "Privacy Policy" },
+    { href: `${base}/cookies`, label: "Cookie Policy" }
   ];
 
   const socialLinks = [
@@ -116,7 +117,7 @@
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12">
       <!-- Brand Column -->
       <div class="col-span-2 md:col-span-3 lg:col-span-1">
-        <a href="/" class="flex items-center gap-2 mb-4 group">
+        <a href={`${base}/`} class="flex items-center gap-2 mb-4 group">
           <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary via-accent to-cyber-pink flex items-center justify-center shadow-lg shadow-primary/25">
             <Download class="w-5 h-5 text-white" />
           </div>

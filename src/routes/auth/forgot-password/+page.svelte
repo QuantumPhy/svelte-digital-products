@@ -1,4 +1,5 @@
 <script lang="ts">
+import { base } from '$app/paths';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
@@ -48,7 +49,7 @@
 					<p class="text-muted-foreground">
 						If an account exists for {email}, you'll receive a password reset link shortly.
 					</p>
-					<Button href="/auth/login" variant="outline" class="w-full">
+					<Button href={`${base}/auth/login`} variant="outline" class="w-full">
 						<ArrowLeft class="h-4 w-4 mr-2" />
 						Back to Login
 					</Button>
@@ -85,7 +86,7 @@
 						{/if}
 					</Button>
 
-					<Button href="/auth/login" variant="ghost" class="w-full">
+					<Button href={`${base}/auth/login`} variant="ghost" class="w-full">
 						<ArrowLeft class="h-4 w-4 mr-2" />
 						Back to Login
 					</Button>

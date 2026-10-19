@@ -1,4 +1,5 @@
 <script lang="ts">
+import { base } from '$app/paths';
   import { Button } from "$lib/components/ui/button";
   import * as Card from "$lib/components/ui/card";
   import { Badge } from "$lib/components/ui/badge";
@@ -222,7 +223,7 @@
 
           <!-- Continue Shopping -->
           <div class="flex items-center justify-between pt-4">
-            <Button variant="outline" class="border-primary/30" href="/products">
+            <Button variant="outline" class="border-primary/30" href={`${base}/products`}>
               <ArrowRight class="w-4 h-4 mr-2 rotate-180" />
               Continue Shopping
             </Button>
@@ -290,7 +291,7 @@
               </div>
 
               <!-- Checkout Button -->
-              <Button class="w-full bg-gradient-to-r from-primary to-accent text-white border-0 h-12" size="lg" href="/checkout">
+              <Button class="w-full bg-gradient-to-r from-primary to-accent text-white border-0 h-12" size="lg" href={`${base}/checkout`}>
                 <Lock class="w-4 h-4 mr-2" />
                 Proceed to Checkout
               </Button>
@@ -354,7 +355,7 @@
         <p class="text-muted-foreground mb-8">
           Looks like you haven't added any products yet. Start exploring our collection!
         </p>
-        <Button class="bg-gradient-to-r from-primary to-accent text-white border-0" size="lg" href="/products">
+        <Button class="bg-gradient-to-r from-primary to-accent text-white border-0" size="lg" href={`${base}/products`}>
           Browse Products
           <ArrowRight class="w-5 h-5 ml-2" />
         </Button>

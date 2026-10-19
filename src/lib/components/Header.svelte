@@ -1,4 +1,5 @@
 <script lang="ts">
+import { base } from '$app/paths';
   import { Button } from "$lib/components/ui/button";
   import * as Sheet from "$lib/components/ui/sheet";
   import {
@@ -18,17 +19,17 @@
   let scrolled = $state(false);
 
   const navLinks = [
-    { href: "/products", label: "Products" },
-    { href: "/licensing", label: "Licensing" },
-    { href: "/support", label: "Support" }
+    { href: `${base}/products`, label: "Products" },
+    { href: `${base}/licensing`, label: "Licensing" },
+    { href: `${base}/support`, label: "Support" }
   ];
 
   const categories = [
-    { href: "/products?category=software", label: "Software", icon: Code },
-    { href: "/products?category=templates", label: "Templates", icon: Palette },
-    { href: "/products?category=courses", label: "Courses", icon: GraduationCap },
-    { href: "/products?category=ebooks", label: "Ebooks", icon: BookOpen },
-    { href: "/products?category=assets", label: "Digital Assets", icon: Sparkles }
+    { href: `${base}/products?category=software`, label: "Software", icon: Code },
+    { href: `${base}/products?category=templates`, label: "Templates", icon: Palette },
+    { href: `${base}/products?category=courses`, label: "Courses", icon: GraduationCap },
+    { href: `${base}/products?category=ebooks`, label: "Ebooks", icon: BookOpen },
+    { href: `${base}/products?category=assets`, label: "Digital Assets", icon: Sparkles }
   ];
 
   if (typeof window !== 'undefined') {
@@ -46,7 +47,7 @@
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-between h-16 lg:h-20">
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-2 group">
+      <a href={`${base}/`} class="flex items-center gap-2 group">
         <div class="relative w-10 h-10 rounded-xl bg-gradient-to-br from-primary via-accent to-cyber-pink flex items-center justify-center shadow-lg shadow-primary/25 group-hover:shadow-primary/40 transition-shadow">
           <Download class="w-5 h-5 text-white" />
           <div class="absolute inset-0 rounded-xl bg-gradient-to-br from-primary via-accent to-cyber-pink opacity-0 group-hover:opacity-100 blur-lg transition-opacity"></div>
@@ -82,7 +83,7 @@
               {/each}
               <div class="border-t border-border mt-2 pt-2">
                 <a
-                  href="/products"
+                  href={`${base}/products`}
                   class="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-primary hover:bg-primary/10 rounded-lg transition-colors"
                 >
                   View All Products
@@ -110,13 +111,13 @@
         </Button>
 
         <!-- My Downloads -->
-        <Button variant="ghost" size="sm" class="hidden md:flex gap-2 hover:bg-primary/10 hover:text-primary" href="/downloads">
+        <Button variant="ghost" size="sm" class="hidden md:flex gap-2 hover:bg-primary/10 hover:text-primary" href={`${base}/downloads`}>
           <Download class="w-4 h-4" />
           <span class="hidden lg:inline">My Downloads</span>
         </Button>
 
         <!-- Cart -->
-        <Button variant="ghost" size="icon" class="relative hover:bg-primary/10 hover:text-primary" href="/cart">
+        <Button variant="ghost" size="icon" class="relative hover:bg-primary/10 hover:text-primary" href={`${base}/cart`}>
           <ShoppingCart class="w-5 h-5" />
           <span class="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-primary to-accent text-white text-xs font-bold rounded-full flex items-center justify-center shadow-lg">
             3
@@ -124,12 +125,12 @@
         </Button>
 
         <!-- User Account -->
-        <Button variant="ghost" size="icon" class="hidden sm:flex hover:bg-primary/10 hover:text-primary" href="/account">
+        <Button variant="ghost" size="icon" class="hidden sm:flex hover:bg-primary/10 hover:text-primary" href={`${base}/account`}>
           <User class="w-5 h-5" />
         </Button>
 
         <!-- CTA Button -->
-        <Button class="hidden md:flex bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg shadow-primary/25 text-white border-0" href="/products">
+        <Button class="hidden md:flex bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg shadow-primary/25 text-white border-0" href={`${base}/products`}>
           Browse Products
         </Button>
 
@@ -192,7 +193,7 @@
                   </a>
                 {/each}
                 <a
-                  href="/downloads"
+                  href={`${base}/downloads`}
                   class="flex items-center gap-2 px-3 py-2 font-medium hover:text-primary transition-colors rounded-lg hover:bg-primary/5"
                 >
                   <Download class="w-4 h-4" />
@@ -202,7 +203,7 @@
                 <div class="border-t border-border my-4"></div>
 
                 <!-- CTA -->
-                <Button class="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg shadow-primary/25 text-white border-0" href="/products">
+                <Button class="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg shadow-primary/25 text-white border-0" href={`${base}/products`}>
                   Browse All Products
                 </Button>
               </div>

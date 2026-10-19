@@ -1,4 +1,5 @@
 <script lang="ts">
+import { base } from '$app/paths';
   import { Button } from "$lib/components/ui/button";
   import * as Card from "$lib/components/ui/card";
   import { Badge } from "$lib/components/ui/badge";
@@ -281,11 +282,11 @@
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
-          <Button size="lg" class="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-xl shadow-primary/30 text-white border-0 text-lg h-14 px-8" href="/products">
+          <Button size="lg" class="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-xl shadow-primary/30 text-white border-0 text-lg h-14 px-8" href={`${base}/products`}>
             Browse Products
             <ArrowRight class="w-5 h-5 ml-2" />
           </Button>
-          <Button size="lg" variant="outline" class="h-14 px-8 border-primary/30 hover:bg-primary/10 hover:border-primary/50" href="/creators">
+          <Button size="lg" variant="outline" class="h-14 px-8 border-primary/30 hover:bg-primary/10 hover:border-primary/50" href={`${base}/creators`}>
             <Play class="w-5 h-5 mr-2" />
             Become a Creator
           </Button>
@@ -406,7 +407,7 @@
     <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
       {#each categories as category}
         <a
-          href="/products?category={category.id}"
+          href=`${base}/products?category={category.id}`
           class="group relative overflow-hidden rounded-2xl aspect-[4/3] lg:aspect-[3/4]"
         >
           <img
@@ -445,7 +446,7 @@
           Hand-picked selections loved by thousands of customers
         </p>
       </div>
-      <Button variant="outline" class="border-primary/30 hover:bg-primary/10" href="/products">
+      <Button variant="outline" class="border-primary/30 hover:bg-primary/10" href={`${base}/products`}>
         View All Products
         <ArrowRight class="w-4 h-4 ml-2" />
       </Button>
@@ -587,7 +588,7 @@
           {/each}
         </div>
 
-        <Button size="lg" class="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-xl shadow-primary/25 text-white border-0" href="/products">
+        <Button size="lg" class="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-xl shadow-primary/25 text-white border-0" href={`${base}/products`}>
           Start Shopping
           <ArrowRight class="w-5 h-5 ml-2" />
         </Button>
@@ -675,7 +676,7 @@
             </ul>
           </Card.Content>
           <Card.Footer>
-            <Button class="w-full {license.highlight ? 'bg-gradient-to-r from-primary to-accent text-white border-0' : ''}" variant={license.highlight ? 'default' : 'outline'} href="/licensing">
+            <Button class="w-full {license.highlight ? 'bg-gradient-to-r from-primary to-accent text-white border-0' : ''}" variant={license.highlight ? 'default' : 'outline'} href={`${base}/licensing`}>
               Learn More
             </Button>
           </Card.Footer>
@@ -759,7 +760,7 @@
           </div>
         {/each}
       </div>
-      <Button size="lg" class="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-xl shadow-primary/25 text-white border-0" href="/products">
+      <Button size="lg" class="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-xl shadow-primary/25 text-white border-0" href={`${base}/products`}>
         Shop with Confidence
         <ArrowRight class="w-5 h-5 ml-2" />
       </Button>
@@ -818,7 +819,7 @@
     </div>
 
     <div class="text-center mt-10">
-      <Button variant="outline" class="border-primary/30 hover:bg-primary/10" href="/creators">
+      <Button variant="outline" class="border-primary/30 hover:bg-primary/10" href={`${base}/creators`}>
         View All Creators
         <ArrowRight class="w-4 h-4 ml-2" />
       </Button>
@@ -836,11 +837,11 @@
       Join over 50,000 creators and developers who trust DigitalVault for their digital product needs.
     </p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <Button size="lg" class="bg-white text-primary hover:bg-white/90 shadow-xl border-0 h-14 px-8" href="/products">
+      <Button size="lg" class="bg-white text-primary hover:bg-white/90 shadow-xl border-0 h-14 px-8" href={`${base}/products`}>
         Browse Products
         <ArrowRight class="w-5 h-5 ml-2" />
       </Button>
-      <Button size="lg" variant="outline" class="border-white/30 text-white hover:bg-white/10 h-14 px-8" href="/creators">
+      <Button size="lg" variant="outline" class="border-white/30 text-white hover:bg-white/10 h-14 px-8" href={`${base}/creators`}>
         Become a Creator
       </Button>
     </div>

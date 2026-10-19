@@ -1,4 +1,5 @@
 <script lang="ts">
+import { base } from '$app/paths';
 	import { Button } from '$lib/components/ui/button';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import { User, LogOut, Settings, ShoppingBag, Heart, CreditCard } from 'lucide-svelte';
@@ -32,23 +33,23 @@
 				</div>
 			</DropdownMenu.Label>
 			<DropdownMenu.Separator />
-			<DropdownMenu.Item href="/account">
+			<DropdownMenu.Item href={`${base}/account`}>
 				<User class="mr-2 h-4 w-4" />
 				<span>My Account</span>
 			</DropdownMenu.Item>
-			<DropdownMenu.Item href="/account/orders">
+			<DropdownMenu.Item href={`${base}/account/orders`}>
 				<ShoppingBag class="mr-2 h-4 w-4" />
 				<span>Orders</span>
 			</DropdownMenu.Item>
-			<DropdownMenu.Item href="/wishlist">
+			<DropdownMenu.Item href={`${base}/wishlist`}>
 				<Heart class="mr-2 h-4 w-4" />
 				<span>Wishlist</span>
 			</DropdownMenu.Item>
-			<DropdownMenu.Item href="/account/billing">
+			<DropdownMenu.Item href={`${base}/account/billing`}>
 				<CreditCard class="mr-2 h-4 w-4" />
 				<span>Billing</span>
 			</DropdownMenu.Item>
-			<DropdownMenu.Item href="/account/settings">
+			<DropdownMenu.Item href={`${base}/account/settings`}>
 				<Settings class="mr-2 h-4 w-4" />
 				<span>Settings</span>
 			</DropdownMenu.Item>
@@ -64,7 +65,7 @@
 	</DropdownMenu.Root>
 {:else}
 	<div class="flex items-center gap-2">
-		<Button variant="ghost" href="/auth/login">Sign in</Button>
-		<Button href="/auth/register">Sign up</Button>
+		<Button variant="ghost" href={`${base}/auth/login`}>Sign in</Button>
+		<Button href={`${base}/auth/register`}>Sign up</Button>
 	</div>
 {/if}

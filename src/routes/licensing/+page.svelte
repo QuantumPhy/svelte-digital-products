@@ -1,4 +1,5 @@
 <script lang="ts">
+import { base } from '$app/paths';
   import { Button } from "$lib/components/ui/button";
   import * as Card from "$lib/components/ui/card";
   import { Badge } from "$lib/components/ui/badge";
@@ -227,7 +228,7 @@
             <Button
               class="w-full {license.highlight ? 'bg-gradient-to-r from-primary to-accent text-white border-0' : ''}"
               variant={license.highlight ? 'default' : 'outline'}
-              href="/products"
+              href={`${base}/products`}
             >
               Browse Products
               <ArrowRight class="w-4 h-4 ml-2" />
@@ -428,11 +429,11 @@
         For enterprise, bulk purchases, or unique requirements, our team is here to help create a custom solution.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button size="lg" class="bg-gradient-to-r from-primary to-accent text-white border-0" href="/support">
+        <Button size="lg" class="bg-gradient-to-r from-primary to-accent text-white border-0" href={`${base}/support`}>
           Contact Sales
           <ArrowRight class="w-5 h-5 ml-2" />
         </Button>
-        <Button size="lg" variant="outline" class="border-primary/30" href="/support">
+        <Button size="lg" variant="outline" class="border-primary/30" href={`${base}/support`}>
           Read Full License Terms
         </Button>
       </div>
