@@ -1,7 +1,7 @@
 import { redirect, error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { google, getGoogleUser } from '$lib/server/oauth/google';
-import { createUser, findUserByEmail, createSession } from '$lib/server/auth';
+import { google, getGoogleUser } from '#lib/server/oauth/google.js';
+import { createUser, findUserByEmail, createSession } from '#lib/server/auth.js';
 
 export const GET: RequestHandler = async ({ url, cookies }) => {
 	const code = url.searchParams.get('code');

@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button';
-	import { Input } from '$lib/components/ui/input';
-	import { Label } from '$lib/components/ui/label';
-	import { Separator } from '$lib/components/ui/separator';
-	import { Mail, Lock, Chrome, Github, Loader2 } from 'lucide-svelte';
+	import { Button } from '#lib/components/ui/button/index.js';
+	import { Input } from '#lib/components/ui/input/index.js';
+	import { Label } from '#lib/components/ui/label/index.js';
+	import { Separator } from '#lib/components/ui/separator/index.js';
+	import { Mail, Lock, Loader2 } from '@lucide/svelte';
+import { Chrome, Github } from '../../../lib/icons/cocoding-brands/index.js';
 
 	let email = $state('');
 	let password = $state('');

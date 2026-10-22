@@ -1,5 +1,5 @@
 // See https://kit.svelte.dev/docs/types#app
-import type { User, Session } from '$lib/server/auth';
+import type { User, Session } from '#lib/server/auth.js';
 
 declare global {
 	namespace App {

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { cn, type WithElementRef, type WithoutChildren } from "$lib/utils.js";
+	import { cn, type WithElementRef, type WithoutChildren } from "#lib/utils.js";
 	import type { HTMLAttributes } from "svelte/elements";
 	import { getPayloadConfigFromPayload, useChart, type TooltipPayload } from "./chart-utils.js";
-	import { getTooltipContext, Tooltip as TooltipPrimitive } from "layerchart";
+	import { getChartContext, Tooltip as TooltipPrimitive } from "layerchart";
 	import type { Snippet } from "svelte";
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -48,7 +48,15 @@
 	} = $props();
 
 	const chart = useChart();
-	const tooltipCtx = getTooltipContext();
+	const layerchart = getChartContext<Record<string, unknown>>();
+ const tooltipCtx = {
+  get payload(): TooltipPayload[] {
+   return layerchart.tooltip.series.filter((series) => series.visible).map((series) => ({
+    key: series.key, label: series.label, name: series.label, value: series.value, color: series.color,
+    payload: layerchart.tooltip.data ?? undefined,
+   }));
+  }
+ };
 
 	const formattedLabel = $derived.by(() => {
 		if (hideLabel || !tooltipCtx.payload?.length) return null;

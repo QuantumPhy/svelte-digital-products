@@ -1,7 +1,7 @@
 import { json, error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import stripe from '$lib/server/stripe';
-import { STRIPE_WEBHOOK_SECRET } from '$env/static/private';
+import stripe from '#lib/server/stripe.js';
+import { STRIPE_WEBHOOK_SECRET } from '$app/env/private';
 import {
 	handleCheckoutCompleted,
 	handlePaymentSucceeded,
@@ -13,7 +13,7 @@ import {
 	handleInvoicePaymentFailed,
 	handleCustomerCreated,
 	handleCustomerUpdated
-} from '$lib/server/webhooks/stripe';
+} from '#lib/server/webhooks/stripe.js';
 import type Stripe from 'stripe';
 
 // Track processed events to ensure idempotency

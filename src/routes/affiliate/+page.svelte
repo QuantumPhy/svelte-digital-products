@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button';
-	import { ArrowLeft } from 'lucide-svelte';
+	import { Button } from '#lib/components/ui/button/index.js';
+	import { ArrowLeft } from '@lucide/svelte';
 </script>
 
 <svelte:head>

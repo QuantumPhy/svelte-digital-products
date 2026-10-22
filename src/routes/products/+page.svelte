@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button";
-  import * as Card from "$lib/components/ui/card";
-  import { Badge } from "$lib/components/ui/badge";
-  import { Checkbox } from "$lib/components/ui/checkbox";
-  import { Separator } from "$lib/components/ui/separator";
-  import * as Select from "$lib/components/ui/select";
+  import { Button } from "#lib/components/ui/button/index.js";
+  import * as Card from "#lib/components/ui/card/index.js";
+  import { Badge } from "#lib/components/ui/badge/index.js";
+  import { Checkbox } from "#lib/components/ui/checkbox/index.js";
+  import { Separator } from "#lib/components/ui/separator/index.js";
+  import * as Select from "#lib/components/ui/select/index.js";
   import {
     Search,
     Filter,
@@ -22,7 +22,7 @@
     X,
     ChevronDown,
     ArrowUpDown
-  } from "lucide-svelte";
+  } from "@lucide/svelte";
 
   let searchQuery = $state("");
   let viewMode = $state<"grid" | "list">("grid");

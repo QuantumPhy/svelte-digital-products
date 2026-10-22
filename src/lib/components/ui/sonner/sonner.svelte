@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { circle-check as CircleCheckIcon } from "lucide-svelte";
-	import { info as InfoIcon } from "lucide-svelte";
-	import { loader-2 as Loader2Icon } from "lucide-svelte";
-	import { octagon-x as OctagonXIcon } from "lucide-svelte";
-	import { triangle-alert as TriangleAlertIcon } from "lucide-svelte";
+	import { CircleCheck as CircleCheckIcon } from "@lucide/svelte";
+	import { Info as InfoIcon } from "@lucide/svelte";
+	import { Loader2 as Loader2Icon } from "@lucide/svelte";
+	import { OctagonX as OctagonXIcon } from "@lucide/svelte";
+	import { TriangleAlert as TriangleAlertIcon } from "@lucide/svelte";
 
 	import { Toaster as Sonner, type ToasterProps as SonnerProps } from "svelte-sonner";
 	import { mode } from "mode-watcher";

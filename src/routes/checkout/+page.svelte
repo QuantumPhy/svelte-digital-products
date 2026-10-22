@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button";
-  import * as Card from "$lib/components/ui/card";
-  import { Badge } from "$lib/components/ui/badge";
-  import { Checkbox } from "$lib/components/ui/checkbox";
-  import { Separator } from "$lib/components/ui/separator";
+  import { Button } from "#lib/components/ui/button/index.js";
+  import * as Card from "#lib/components/ui/card/index.js";
+  import { Badge } from "#lib/components/ui/badge/index.js";
+  import { Checkbox } from "#lib/components/ui/checkbox/index.js";
+  import { Separator } from "#lib/components/ui/separator/index.js";
   import {
     CreditCard,
     Lock,
@@ -18,7 +18,7 @@
     RefreshCw,
     ChevronRight,
     Download
-  } from "lucide-svelte";
+  } from "@lucide/svelte";
 
   let step = $state(1);
   let paymentMethod = $state<"card" | "paypal">("card");

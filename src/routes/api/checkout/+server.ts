@@ -1,7 +1,7 @@
 import { json, error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { createCheckoutSession, retrieveCheckoutSession } from '$lib/server/stripe/checkout';
-import { PUBLIC_APP_URL } from '$env/static/public';
+import { createCheckoutSession, retrieveCheckoutSession } from '#lib/server/stripe/checkout.js';
+import { PUBLIC_APP_URL } from '$app/env/public';
 
 export const POST: RequestHandler = async ({ request }) => {
 	try {

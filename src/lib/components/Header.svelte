@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button";
-  import * as Sheet from "$lib/components/ui/sheet";
+  import { Button } from "#lib/components/ui/button/index.js";
+  import * as Sheet from "#lib/components/ui/sheet/index.js";
   import {
     Menu,
     ShoppingCart,
@@ -13,7 +13,7 @@
     GraduationCap,
     Palette,
     ChevronDown
-  } from "lucide-svelte";
+  } from "@lucide/svelte";
 
   let scrolled = $state(false);
 

@@ -1,4 +1,4 @@
-import { dev } from '$app/environment';
+import { dev } from '$app/env';
 import * as cookie from 'cookie';
 
 export interface User {
@@ -134,7 +134,7 @@ export function invalidateSession(sessionId: string): void {
 }
 
 export function setSessionCookie(sessionId: string): string {
-	return cookie.serialize('session', sessionId, {
+	return cookie.stringifySetCookie({ name: 'session', value: sessionId,
 		path: '/',
 		httpOnly: true,
 		secure: !dev,
@@ -144,7 +144,7 @@ export function setSessionCookie(sessionId: string): string {
 }
 
 export function deleteSessionCookie(): string {
-	return cookie.serialize('session', '', {
+	return cookie.stringifySetCookie({ name: 'session', value: '',
 		path: '/',
 		httpOnly: true,
 		secure: !dev,
@@ -155,6 +155,6 @@ export function deleteSessionCookie(): string {
 
 export function getSessionFromCookies(cookieHeader: string | null): string | null {
 	if (!cookieHeader) return null;
-	const cookies = cookie.parse(cookieHeader);
+	const cookies = cookie.parseCookie(cookieHeader);
 	return cookies.session || null;
 }

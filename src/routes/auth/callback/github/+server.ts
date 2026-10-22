@@ -1,7 +1,7 @@
 import { redirect, error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { github, getGitHubUser, getGitHubEmail } from '$lib/server/oauth/github';
-import { createUser, findUserByEmail, createSession } from '$lib/server/auth';
+import { github, getGitHubUser, getGitHubEmail } from '#lib/server/oauth/github.js';
+import { createUser, findUserByEmail, createSession } from '#lib/server/auth.js';
 
 export const GET: RequestHandler = async ({ url, cookies }) => {
 	const code = url.searchParams.get('code');

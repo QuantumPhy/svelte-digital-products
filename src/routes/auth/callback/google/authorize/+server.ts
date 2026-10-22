@@ -1,6 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { google } from '$lib/server/oauth/google';
+import { google } from '#lib/server/oauth/google.js';
 import { generateState, generateCodeVerifier } from 'arctic';
 
 export const GET: RequestHandler = async ({ cookies }) => {

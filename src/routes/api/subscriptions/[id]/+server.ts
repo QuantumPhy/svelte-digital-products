@@ -5,7 +5,7 @@ import {
 	updateSubscription,
 	cancelSubscription,
 	resumeSubscription
-} from '$lib/server/stripe/subscriptions';
+} from '#lib/server/stripe/subscriptions.js';
 
 export const GET: RequestHandler = async ({ params }) => {
 	try {
@@ -14,8 +14,8 @@ export const GET: RequestHandler = async ({ params }) => {
 		return json({
 			id: subscription.id,
 			status: subscription.status,
-			currentPeriodStart: new Date(subscription.current_period_start * 1000).toISOString(),
-			currentPeriodEnd: new Date(subscription.current_period_end * 1000).toISOString(),
+			currentPeriodStart: subscription.items.data[0] ? new Date(subscription.items.data[0].current_period_start * 1000).toISOString() : null,
+			currentPeriodEnd: subscription.items.data[0] ? new Date(subscription.items.data[0].current_period_end * 1000).toISOString() : null,
 			cancelAtPeriodEnd: subscription.cancel_at_period_end,
 			canceledAt: subscription.canceled_at
 				? new Date(subscription.canceled_at * 1000).toISOString()

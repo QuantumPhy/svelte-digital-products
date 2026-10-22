@@ -1,5 +1,5 @@
 import { writable, derived, get } from 'svelte/store';
-import { browser } from '$app/environment';
+import { browser } from '$app/env';
 
 export interface CartItem {
 	id: number | string;
@@ -159,22 +159,10 @@ export const cart = createCartStore();
 // Derived stores for computed values
 export const cartItems = derived(cart, ($cart) => $cart.items);
 
-export const cartCount = derived(cart, ($cart) =>
-	$cart.items.reduce((sum, item) => sum + item.quantity, 0)
-);
-
-export const cartSubtotal = derived(cart, ($cart) =>
-	$cart.items.reduce((sum, item) => sum + item.price * item.quantity, 0)
-);
-
-export const cartDiscount = derived([cart, cartSubtotal], ([$cart, $subtotal]) =>
-	$cart.promoDiscount > 0 ? ($subtotal * $cart.promoDiscount) / 100 : 0
-);
-
-export const cartTotal = derived(
-	[cartSubtotal, cartDiscount],
-	([$subtotal, $discount]) => $subtotal - $discount
-);
+export const cartCount = derived(cart, ($cart) => $cart.items.reduce((sum, item) => sum + item.quantity, 0));
+export const cartSubtotal = derived(cart, ($cart) => $cart.items.reduce((sum, item) => sum + item.price * item.quantity, 0));
+export const cartDiscount = derived([cart, cartSubtotal], ([$cart, $subtotal]) => $cart.promoDiscount > 0 ? $subtotal * $cart.promoDiscount / 100 : 0);
+export const cartTotal = derived([cartSubtotal, cartDiscount], ([$subtotal, $discount]) => $subtotal - $discount);
 
 // Helper function to get cart items for checkout
 export function getCartItemsForCheckout(): CartItem[] {

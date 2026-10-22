@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button";
-  import * as Card from "$lib/components/ui/card";
-  import { Badge } from "$lib/components/ui/badge";
-  import * as Avatar from "$lib/components/ui/avatar";
-  import * as Tabs from "$lib/components/ui/tabs";
-  import { Separator } from "$lib/components/ui/separator";
+  import { Button } from "#lib/components/ui/button/index.js";
+  import * as Card from "#lib/components/ui/card/index.js";
+  import { Badge } from "#lib/components/ui/badge/index.js";
+  import * as Avatar from "#lib/components/ui/avatar/index.js";
+  import * as Tabs from "#lib/components/ui/tabs/index.js";
+  import { Separator } from "#lib/components/ui/separator/index.js";
   import {
     Star,
     Download,
@@ -24,9 +24,9 @@
     MessageSquare,
     ThumbsUp,
     AlertCircle
-  } from "lucide-svelte";
+  } from "@lucide/svelte";
 
-  import { page } from "$app/stores";
+  import { page } from '$app/state';
 
   // Mock product data - in real app would come from API
   const product = {
@@ -239,8 +239,12 @@ Whether you're starting fresh or looking to level up your skills, this course pr
         <!-- Author -->
         <div class="flex items-center gap-3 mb-6 p-4 bg-muted/30 rounded-xl">
           <Avatar.Root class="w-12 h-12">
-            <Avatar.Image src={product.author.avatar} alt={product.author.name} />
-            <Avatar.Fallback>{product.author.name.split(' ').map(n => n[0]).join('')}</Avatar.Fallback>
+            <Avatar.Image
+              src={product.author.avatar}
+              alt={product.author.name}
+            />
+
+            <Avatar.Fallback>{product.author.name.split(' ').map((n) => n[0]).join('')}</Avatar.Fallback>
           </Avatar.Root>
           <div>
             <p class="font-semibold">{product.author.name}</p>
@@ -420,7 +424,7 @@ Whether you're starting fresh or looking to level up your skills, this course pr
                       <div class="flex items-center gap-3">
                         <Avatar.Root class="w-10 h-10">
                           <Avatar.Image src={review.avatar} alt={review.author} />
-                          <Avatar.Fallback>{review.author.split(' ').map(n => n[0]).join('')}</Avatar.Fallback>
+                          <Avatar.Fallback>{review.author.split(' ').map((n) => n[0]).join('')}</Avatar.Fallback>
                         </Avatar.Root>
                         <div>
                           <p class="font-semibold">{review.author}</p>
@@ -501,8 +505,12 @@ Whether you're starting fresh or looking to level up your skills, this course pr
             <Card.Content class="pt-6">
               <div class="flex flex-col md:flex-row gap-6">
                 <Avatar.Root class="w-24 h-24 shrink-0">
-                  <Avatar.Image src={product.author.avatar} alt={product.author.name} />
-                  <Avatar.Fallback>{product.author.name.split(' ').map(n => n[0]).join('')}</Avatar.Fallback>
+                  <Avatar.Image
+                    src={product.author.avatar}
+                    alt={product.author.name}
+                  />
+
+                  <Avatar.Fallback>{product.author.name.split(' ').map((n) => n[0]).join('')}</Avatar.Fallback>
                 </Avatar.Root>
                 <div>
                   <h3 class="text-xl font-bold mb-1">{product.author.name}</h3>

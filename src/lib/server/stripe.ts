@@ -5,7 +5,7 @@ function getStripe(): Stripe {
 	if (!key) {
 		throw new Error('STRIPE_SECRET_KEY is not set in environment variables');
 	}
-	return new Stripe(key, { apiVersion: '2024-12-18.acacia' });
+	return new Stripe(key, { apiVersion: '2026-09-30.endive' });
 }
 
 let _stripe: Stripe | null = null;

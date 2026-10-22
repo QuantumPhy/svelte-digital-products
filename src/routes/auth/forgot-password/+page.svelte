@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button';
-	import { Input } from '$lib/components/ui/input';
-	import { Label } from '$lib/components/ui/label';
-	import { Mail, ArrowLeft, Loader2, CheckCircle } from 'lucide-svelte';
+	import { Button } from '#lib/components/ui/button/index.js';
+	import { Input } from '#lib/components/ui/input/index.js';
+	import { Label } from '#lib/components/ui/label/index.js';
+	import { Mail, ArrowLeft, Loader2, CheckCircle } from '@lucide/svelte';
 
 	let email = $state('');
 	let loading = $state(false);

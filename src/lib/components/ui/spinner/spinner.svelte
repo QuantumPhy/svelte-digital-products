@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { cn } from "$lib/utils.js";
-	import { loader-2 as Loader2Icon } from "lucide-svelte";
+	import { cn } from "#lib/utils.js";
+	import { Loader2 as Loader2Icon } from "@lucide/svelte";
 	import type { ComponentProps } from "svelte";
 
 	let { class: className, ...restProps }: ComponentProps<typeof Loader2Icon> = $props();

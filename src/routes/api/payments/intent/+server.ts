@@ -1,6 +1,6 @@
 import { json, error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { createPaymentIntent, retrievePaymentIntent } from '$lib/server/stripe/payments';
+import { createPaymentIntent, retrievePaymentIntent } from '#lib/server/stripe/payments.js';
 
 export const POST: RequestHandler = async ({ request }) => {
 	try {

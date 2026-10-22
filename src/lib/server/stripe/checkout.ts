@@ -1,5 +1,5 @@
 import stripe from '../stripe';
-import type { CartItem } from '$lib/stores/cart';
+import type { CartItem } from '#lib/stores/cart.js';
 
 export interface CheckoutSessionOptions {
 	items: CartItem[];
@@ -30,7 +30,7 @@ export async function createCheckoutSession(options: CheckoutSessionOptions) {
 	}));
 
 	const session = await stripe.checkout.sessions.create({
-		payment_method_types: ['card'],
+		allowed_payment_method_types: ['card'],
 		line_items: lineItems,
 		mode,
 		customer_email: customerEmail,

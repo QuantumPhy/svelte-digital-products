@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button';
-	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
-	import { User, LogOut, Settings, ShoppingBag, Heart, CreditCard } from 'lucide-svelte';
-	import { userStore, isAuthenticated, user } from '$lib/stores/user';
+	import { Button } from '#lib/components/ui/button/index.js';
+	import * as DropdownMenu from '#lib/components/ui/dropdown-menu/index.js';
+	import { User, LogOut, Settings, ShoppingBag, Heart, CreditCard } from '@lucide/svelte';
+	import { userStore, isAuthenticated, user } from '#lib/stores/user.js';
 
 	let menuOpen = $state(false);
 </script>
@@ -32,26 +32,26 @@
 				</div>
 			</DropdownMenu.Label>
 			<DropdownMenu.Separator />
-			<DropdownMenu.Item href="/account">
+			<DropdownMenu.Item>{#snippet child({ props })}<a {...props} href="/account">
 				<User class="mr-2 h-4 w-4" />
 				<span>My Account</span>
-			</DropdownMenu.Item>
-			<DropdownMenu.Item href="/account/orders">
+			</a>{/snippet}</DropdownMenu.Item>
+			<DropdownMenu.Item>{#snippet child({ props })}<a {...props} href="/account/orders">
 				<ShoppingBag class="mr-2 h-4 w-4" />
 				<span>Orders</span>
-			</DropdownMenu.Item>
-			<DropdownMenu.Item href="/wishlist">
+			</a>{/snippet}</DropdownMenu.Item>
+			<DropdownMenu.Item>{#snippet child({ props })}<a {...props} href="/wishlist">
 				<Heart class="mr-2 h-4 w-4" />
 				<span>Wishlist</span>
-			</DropdownMenu.Item>
-			<DropdownMenu.Item href="/account/billing">
+			</a>{/snippet}</DropdownMenu.Item>
+			<DropdownMenu.Item>{#snippet child({ props })}<a {...props} href="/account/billing">
 				<CreditCard class="mr-2 h-4 w-4" />
 				<span>Billing</span>
-			</DropdownMenu.Item>
-			<DropdownMenu.Item href="/account/settings">
+			</a>{/snippet}</DropdownMenu.Item>
+			<DropdownMenu.Item>{#snippet child({ props })}<a {...props} href="/account/settings">
 				<Settings class="mr-2 h-4 w-4" />
 				<span>Settings</span>
-			</DropdownMenu.Item>
+			</a>{/snippet}</DropdownMenu.Item>
 			<DropdownMenu.Separator />
 			<DropdownMenu.Item
 				onclick={() => userStore.logout()}

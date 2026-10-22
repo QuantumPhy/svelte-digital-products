@@ -1,19 +1,8 @@
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button";
-  import { Separator } from "$lib/components/ui/separator";
-  import {
-    Download,
-    Mail,
-    Twitter,
-    Github,
-    Linkedin,
-    Youtube,
-    CreditCard,
-    Shield,
-    Zap,
-    HeadphonesIcon,
-    ArrowRight
-  } from "lucide-svelte";
+  import { Button } from "#lib/components/ui/button/index.js";
+  import { Separator } from "#lib/components/ui/separator/index.js";
+  import { Download, Mail, CreditCard, Shield, Zap, HeadphonesIcon, ArrowRight } from "@lucide/svelte";
+import { Twitter, Github, Linkedin, Youtube } from "../icons/cocoding-brands/index.js";
 
   const productCategories = [
     { href: "/products?category=software", label: "Software" },

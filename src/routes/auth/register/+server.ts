@@ -1,6 +1,6 @@
 import { json, error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { createUser, findUserByEmail, createSession } from '$lib/server/auth';
+import { createUser, findUserByEmail, createSession } from '#lib/server/auth.js';
 
 export const POST: RequestHandler = async ({ request, cookies }) => {
 	try {

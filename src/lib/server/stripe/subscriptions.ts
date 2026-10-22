@@ -17,7 +17,7 @@ export async function createSubscription(options: CreateSubscriptionOptions) {
 		payment_settings: {
 			save_default_payment_method: 'on_subscription'
 		},
-		expand: ['latest_invoice.payment_intent'],
+		expand: ['latest_invoice.confirmation_secret'],
 		metadata,
 		trial_period_days: trialDays
 	});

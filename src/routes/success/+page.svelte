@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { Button } from '$lib/components/ui/button';
-	import { CheckCircle, Package, ArrowRight, Loader2 } from 'lucide-svelte';
+	import { page } from '$app/state';
+	import { Button } from '#lib/components/ui/button/index.js';
+	import { CheckCircle, Package, ArrowRight, Loader2 } from '@lucide/svelte';
 	import { onMount } from 'svelte';
-	import { cart } from '$lib/stores/cart';
+	import { cart } from '#lib/stores/cart.js';
 
 	let loading = $state(true);
 	let orderDetails = $state<{
@@ -15,7 +15,7 @@
 	let error = $state('');
 
 	onMount(async () => {
-		const sessionId = $page.url.searchParams.get('session_id');
+		const sessionId = page.url.searchParams.get('session_id');
 
 		if (!sessionId) {
 			loading = false;

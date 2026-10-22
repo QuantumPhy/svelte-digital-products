@@ -1,7 +1,7 @@
 import { json, error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { createSubscription, listSubscriptions } from '$lib/server/stripe/subscriptions';
-import { getOrCreateCustomer } from '$lib/server/stripe/customers';
+import { createSubscription, listSubscriptions } from '#lib/server/stripe/subscriptions.js';
+import { getOrCreateCustomer } from '#lib/server/stripe/customers.js';
 
 export const POST: RequestHandler = async ({ request, locals }) => {
 	try {
@@ -34,10 +34,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 		let clientSecret: string | null = null;
 
 		if (latestInvoice && typeof latestInvoice !== 'string') {
-			const paymentIntent = latestInvoice.payment_intent;
-			if (paymentIntent && typeof paymentIntent !== 'string') {
-				clientSecret = paymentIntent.client_secret;
-			}
+			clientSecret = latestInvoice.confirmation_secret?.client_secret ?? null;
 		}
 
 		return json({
@@ -66,8 +63,8 @@ export const GET: RequestHandler = async ({ url }) => {
 			subscriptions: subscriptions.data.map((sub) => ({
 				id: sub.id,
 				status: sub.status,
-				currentPeriodStart: new Date(sub.current_period_start * 1000).toISOString(),
-				currentPeriodEnd: new Date(sub.current_period_end * 1000).toISOString(),
+				currentPeriodStart: sub.items.data[0] ? new Date(sub.items.data[0].current_period_start * 1000).toISOString() : null,
+				currentPeriodEnd: sub.items.data[0] ? new Date(sub.items.data[0].current_period_end * 1000).toISOString() : null,
 				cancelAtPeriodEnd: sub.cancel_at_period_end,
 				priceId: sub.items.data[0]?.price.id
 			}))

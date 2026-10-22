@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button";
-  import * as Card from "$lib/components/ui/card";
-  import { Badge } from "$lib/components/ui/badge";
-  import * as Accordion from "$lib/components/ui/accordion";
-  import { Separator } from "$lib/components/ui/separator";
-  import * as Tabs from "$lib/components/ui/tabs";
+  import { Button } from "#lib/components/ui/button/index.js";
+  import * as Card from "#lib/components/ui/card/index.js";
+  import { Badge } from "#lib/components/ui/badge/index.js";
+  import * as Accordion from "#lib/components/ui/accordion/index.js";
+  import { Separator } from "#lib/components/ui/separator/index.js";
+  import * as Tabs from "#lib/components/ui/tabs/index.js";
   import {
     HelpCircle,
     MessageCircle,
@@ -26,7 +26,7 @@
     Users,
     AlertCircle,
     ExternalLink
-  } from "lucide-svelte";
+  } from "@lucide/svelte";
 
   let searchQuery = $state("");
   let selectedCategory = $state("all");

@@ -42,7 +42,7 @@ export interface ProductWithPrices {
 		currency: string;
 		interval?: string;
 		intervalCount?: number;
-		type: 'one_time' | 'recurring';
+		type: import('stripe').default.Price.Type;
 	}[];
 }
 

@@ -1,6 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { invalidateSession, getSessionFromCookies } from '$lib/server/auth';
+import { invalidateSession, getSessionFromCookies } from '#lib/server/auth.js';
 
 export const POST: RequestHandler = async ({ cookies }) => {
 	const sessionId = cookies.get('session');

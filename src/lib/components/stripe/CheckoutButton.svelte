@@ -1,9 +1,7 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button';
-	import { Loader2, CreditCard } from 'lucide-svelte';
-	import { loadStripe } from '@stripe/stripe-js';
-	import { PUBLIC_STRIPE_KEY } from '$env/static/public';
-	import { getCartItemsForCheckout } from '$lib/stores/cart';
+	import { Button } from '#lib/components/ui/button/index.js';
+	import { Loader2, CreditCard } from '@lucide/svelte';
+	import { getCartItemsForCheckout } from '#lib/stores/cart.js';
 
 	interface Props {
 		email?: string;
@@ -49,17 +47,7 @@
 			// Redirect to Stripe Checkout
 			if (data.url) {
 				window.location.href = data.url;
-			} else if (data.sessionId) {
-				const stripe = await loadStripe(PUBLIC_STRIPE_KEY);
-				if (stripe) {
-					const { error: stripeError } = await stripe.redirectToCheckout({
-						sessionId: data.sessionId
-					});
-					if (stripeError) {
-						error = stripeError.message || 'Checkout failed';
-					}
-				}
-			}
+			} else { error = 'Checkout is unavailable. Please try again.'; }
 		} catch (err) {
 			error = 'An error occurred. Please try again.';
 			console.error('Checkout error:', err);

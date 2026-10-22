@@ -1,9 +1,5 @@
 import { GitHub } from 'arctic';
-import {
-	GITHUB_CLIENT_ID,
-	GITHUB_CLIENT_SECRET,
-	GITHUB_REDIRECT_URI
-} from '$env/static/private';
+import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, GITHUB_REDIRECT_URI } from '$app/env/private';
 
 export const github = new GitHub(
 	GITHUB_CLIENT_ID || '',

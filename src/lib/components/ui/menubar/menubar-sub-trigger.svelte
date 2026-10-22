@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Menubar as MenubarPrimitive } from "bits-ui";
-	import { ChevronRight as ChevronRightIcon } from "lucide-svelte";
-	import { cn, type WithoutChild } from "$lib/utils.js";
+	import { ChevronRight as ChevronRightIcon } from "@lucide/svelte";
+	import { cn, type WithoutChild } from "#lib/utils.js";
 
 	let {
 		ref = $bindable(null),

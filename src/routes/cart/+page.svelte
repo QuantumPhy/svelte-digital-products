@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button";
-  import * as Card from "$lib/components/ui/card";
-  import { Badge } from "$lib/components/ui/badge";
-  import { Separator } from "$lib/components/ui/separator";
+  import { Button } from "#lib/components/ui/button/index.js";
+  import * as Card from "#lib/components/ui/card/index.js";
+  import { Badge } from "#lib/components/ui/badge/index.js";
+  import { Separator } from "#lib/components/ui/separator/index.js";
   import {
     ShoppingCart,
     Trash2,
@@ -19,7 +19,7 @@
     AlertCircle,
     CheckCircle,
     Lock
-  } from "lucide-svelte";
+  } from "@lucide/svelte";
 
   let cartItems = $state([
     {
