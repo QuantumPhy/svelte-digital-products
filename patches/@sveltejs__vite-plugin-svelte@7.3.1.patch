@@ -1,0 +1,19 @@
+diff --git a/src/utils/options.js b/src/utils/options.js
+index 7ab9e64b60e33b98e7287c3afc118e2f6ff13355..2be547ff9e0c1fd59d80dc0843d90460fe19a7fd 100644
+--- a/src/utils/options.js
++++ b/src/utils/options.js
+@@ -27,7 +27,13 @@ import {
+ } from './constants.js';
+ 
+ import path from 'node:path';
+-import deepmerge from 'deepmerge';
++import createDeepmerge from 'deepmerge';
++// The exact-parent dependency is @fastify/deepmerge, pinned in the lockfile.
++// Preserve Svelte's source-array replacement while rejecting prototype keys.
++const deepmerge = createDeepmerge({
++	symbols: true,
++	mergeArray: () => (_target, source) => source
++});
+ import {
+ 	crawlFrameworkPkgs,
+ 	isDepExcluded,
