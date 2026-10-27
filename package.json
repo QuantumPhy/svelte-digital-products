@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
+    "build": "node --test tests/svelte-merge-contract.test.mjs && vite build",
     "preview": "vite preview",
     "prepare": "svelte-kit sync || echo ''",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -53,5 +53,13 @@
   "imports": {
     "#lib": "./src/lib/index.js",
     "#lib/*": "./src/lib/*"
+  },
+  "pnpm": {
+    "overrides": {
+      "@sveltejs/vite-plugin-svelte@7.3.1>deepmerge": "npm:@fastify/deepmerge@3.2.4"
+    },
+    "patchedDependencies": {
+      "@sveltejs/vite-plugin-svelte@7.3.1": "patches/@sveltejs__vite-plugin-svelte@7.3.1.patch"
+    }
   }
 }
