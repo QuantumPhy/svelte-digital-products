@@ -59,7 +59,8 @@
   },
   "pnpm": {
     "overrides": {
-      "@sveltejs/vite-plugin-svelte@7.3.1>deepmerge": "npm:@fastify/deepmerge@3.2.4"
+      "@sveltejs/vite-plugin-svelte@7.3.1>deepmerge": "npm:@fastify/deepmerge@3.2.4",
+      "sveltekit-superforms@3.0.0>joi": "17.13.9"
     },
     "patchedDependencies": {
       "@sveltejs/vite-plugin-svelte@7.3.1": "patches/@sveltejs__vite-plugin-svelte@7.3.1.patch"
