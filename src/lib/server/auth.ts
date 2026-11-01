@@ -3,6 +3,8 @@ import { dev } from '$app/env';
 import * as cookie from 'cookie';
 
 export interface User {
+	// Server-only Stripe reference; never accepted from an account request body.
+	stripeCustomerId?: string;
 	id: string;
 	email: string;
 	name: string | null;

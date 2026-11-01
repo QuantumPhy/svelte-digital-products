@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "node --test tests/password-storage.test.mjs && node --test tests/svelte-merge-contract.test.mjs tests/table-contract.test.mjs && vite build",
+    "build": "node --test tests/commerce-boundary.test.mjs tests/commerce-provider.test.mjs && node --test tests/password-storage.test.mjs && node --test tests/svelte-merge-contract.test.mjs tests/table-contract.test.mjs && vite build",
     "preview": "vite preview",
     "prepare": "svelte-kit sync || echo ''",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json && svelte-check --tsconfig tests/table-harness/tsconfig.json",
@@ -16,7 +16,8 @@
     "preinstall": "npx only-allow pnpm",
     "check:table": "svelte-kit sync && svelte-check --tsconfig tests/table-harness/tsconfig.json",
     "build:table-harness": "vite build --config tests/table-harness/vite.config.ts",
-    "test:passwords": "node --test tests/password-storage.test.mjs"
+    "test:passwords": "node --test tests/password-storage.test.mjs",
+    "test:commerce": "node --test tests/commerce-boundary.test.mjs tests/commerce-provider.test.mjs"
   },
   "devDependencies": {
     "@lucide/svelte": "^1.63.0",
