@@ -1,9 +1,10 @@
 <script lang="ts">
+ import {templateHref} from "#lib/template-href.js";
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 
 	onMount(() => {
-		goto('/auth/login', { replaceState: true });
+		goto(templateHref('/auth/login'), { replaceState: true });
 	});
 </script>
 

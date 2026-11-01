@@ -1,4 +1,5 @@
 <script lang="ts">
+ import NavigationLink from "#lib/components/shared/NavigationLink.svelte";
 	import { cn, type WithElementRef } from "#lib/utils.js";
 	import type { Snippet } from "svelte";
 	import type { HTMLAnchorAttributes } from "svelte/elements";
@@ -37,7 +38,7 @@
 {#if child}
 	{@render child({ props: mergedProps })}
 {:else}
-	<a bind:this={ref} {...mergedProps}>
+	<NavigationLink bind:ref={ref} {...mergedProps}>
 		{@render children?.()}
-	</a>
+	</NavigationLink>
 {/if}

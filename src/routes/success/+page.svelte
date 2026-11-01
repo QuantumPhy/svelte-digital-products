@@ -1,4 +1,6 @@
 <script lang="ts">
+ import {isStaticPreview} from "#lib/preview.js";
+ import NavigationLink from "#lib/components/shared/NavigationLink.svelte";
 	import { resolve } from '$app/paths';
 	import {checkoutCopy} from '#lib/commerce-copy.js';
 	import {confirmedCheckout,CheckoutStatusError,canClearPurchasedCart,pendingCheckoutKey,isPendingCheckout} from '#lib/checkout-state.js';
@@ -13,7 +15,8 @@
 	let error = $state('');
 
 	onMount(async () => {
-		const sessionId = page.url.searchParams.get('session_id');
+		if(isStaticPreview){error=checkoutCopy.unavailable;loading=false;return;}
+ const sessionId = page.url.searchParams.get('session_id');
 
 		if (!sessionId) {
 			error=checkoutCopy.noSession;
@@ -109,7 +112,7 @@
 
 			<p class="text-sm text-muted-foreground">
 				Questions about your order?
-				<a href="/contact" class="text-primary hover:underline">Contact us</a>
+				<NavigationLink href="/contact" class="text-primary hover:underline">Contact us</NavigationLink>
 			</p>
 		{/if}
 	</div>

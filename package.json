@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "node --test tests/commerce-boundary.test.mjs tests/commerce-provider.test.mjs && node --test tests/password-storage.test.mjs && node --test tests/svelte-merge-contract.test.mjs tests/table-contract.test.mjs && vite build",
+    "build": "node scripts/build-template.mjs",
     "preview": "vite preview",
     "prepare": "svelte-kit sync || echo ''",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json && svelte-check --tsconfig tests/table-harness/tsconfig.json",
@@ -17,7 +17,8 @@
     "check:table": "svelte-kit sync && svelte-check --tsconfig tests/table-harness/tsconfig.json",
     "build:table-harness": "vite build --config tests/table-harness/vite.config.ts",
     "test:passwords": "node --test tests/password-storage.test.mjs",
-    "test:commerce": "node --test tests/commerce-boundary.test.mjs tests/commerce-provider.test.mjs"
+    "test:commerce": "node --test tests/commerce-boundary.test.mjs tests/commerce-provider.test.mjs",
+    "build:server": "node --test tests/template-navigation.test.mjs && node --test tests/commerce-boundary.test.mjs tests/commerce-provider.test.mjs && node --test tests/password-storage.test.mjs && node --test tests/svelte-merge-contract.test.mjs tests/table-contract.test.mjs && vite build"
   },
   "devDependencies": {
     "@lucide/svelte": "^1.63.0",
@@ -30,7 +31,8 @@
     "svelte-check": "^4.7.7",
     "tailwindcss": "^4.3.3",
     "typescript": "~6.0.3",
-    "vite": "^8.3.5"
+    "vite": "^8.3.5",
+    "@sveltejs/adapter-static": "^4.0.1"
   },
   "dependencies": {
     "@internationalized/date": "^3.12.4",

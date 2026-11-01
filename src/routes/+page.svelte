@@ -1,4 +1,5 @@
 <script lang="ts">
+ import NavigationLink from "#lib/components/shared/NavigationLink.svelte";
   import { Button } from "#lib/components/ui/button/index.js";
   import * as Card from "#lib/components/ui/card/index.js";
   import { Badge } from "#lib/components/ui/badge/index.js";
@@ -405,7 +406,7 @@
 
     <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
       {#each categories as category}
-        <a
+        <NavigationLink
           href="/products?category={category.id}"
           class="group relative overflow-hidden rounded-2xl aspect-[4/3] lg:aspect-[3/4]"
         >
@@ -423,7 +424,7 @@
             <p class="text-sm text-white/70">{category.description}</p>
             <p class="text-xs text-white/50 mt-2">{category.count} products</p>
           </div>
-        </a>
+        </NavigationLink>
       {/each}
     </div>
   </div>
@@ -528,7 +529,7 @@
 
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
       {#each trendingProducts as product}
-        <a href="/products/{product.id}" class="group">
+        <NavigationLink href="/products/{product.id}" class="group">
           <div class="relative overflow-hidden rounded-xl aspect-square mb-3">
             <img
               src={product.image}
@@ -547,7 +548,7 @@
               {product.rating}
             </div>
           </div>
-        </a>
+        </NavigationLink>
       {/each}
     </div>
   </div>

@@ -1,4 +1,5 @@
 <script lang="ts">
+ import NavigationLink from "#lib/components/shared/NavigationLink.svelte";
 	import { Button } from '#lib/components/ui/button/index.js';
 	import * as DropdownMenu from '#lib/components/ui/dropdown-menu/index.js';
 	import { User, LogOut, Settings, ShoppingBag, Heart, CreditCard } from '@lucide/svelte';
@@ -32,26 +33,26 @@
 				</div>
 			</DropdownMenu.Label>
 			<DropdownMenu.Separator />
-			<DropdownMenu.Item>{#snippet child({ props })}<a {...props} href="/account">
+			<DropdownMenu.Item>{#snippet child({ props })}<NavigationLink {...props} href="/account">
 				<User class="mr-2 h-4 w-4" />
 				<span>My Account</span>
-			</a>{/snippet}</DropdownMenu.Item>
-			<DropdownMenu.Item>{#snippet child({ props })}<a {...props} href="/account/orders">
+			</NavigationLink>{/snippet}</DropdownMenu.Item>
+			<DropdownMenu.Item>{#snippet child({ props })}<NavigationLink {...props} href="/account/orders">
 				<ShoppingBag class="mr-2 h-4 w-4" />
 				<span>Orders</span>
-			</a>{/snippet}</DropdownMenu.Item>
-			<DropdownMenu.Item>{#snippet child({ props })}<a {...props} href="/wishlist">
+			</NavigationLink>{/snippet}</DropdownMenu.Item>
+			<DropdownMenu.Item>{#snippet child({ props })}<NavigationLink {...props} href="/wishlist">
 				<Heart class="mr-2 h-4 w-4" />
 				<span>Wishlist</span>
-			</a>{/snippet}</DropdownMenu.Item>
-			<DropdownMenu.Item>{#snippet child({ props })}<a {...props} href="/account/billing">
+			</NavigationLink>{/snippet}</DropdownMenu.Item>
+			<DropdownMenu.Item>{#snippet child({ props })}<NavigationLink {...props} href="/account/billing">
 				<CreditCard class="mr-2 h-4 w-4" />
 				<span>Billing</span>
-			</a>{/snippet}</DropdownMenu.Item>
-			<DropdownMenu.Item>{#snippet child({ props })}<a {...props} href="/account/settings">
+			</NavigationLink>{/snippet}</DropdownMenu.Item>
+			<DropdownMenu.Item>{#snippet child({ props })}<NavigationLink {...props} href="/account/settings">
 				<Settings class="mr-2 h-4 w-4" />
 				<span>Settings</span>
-			</a>{/snippet}</DropdownMenu.Item>
+			</NavigationLink>{/snippet}</DropdownMenu.Item>
 			<DropdownMenu.Separator />
 			<DropdownMenu.Item
 				onclick={() => userStore.logout()}

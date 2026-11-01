@@ -1,4 +1,5 @@
 <script lang="ts">
+ import NavigationLink from "#lib/components/shared/NavigationLink.svelte";
   import { Button } from "#lib/components/ui/button/index.js";
   import * as Sheet from "#lib/components/ui/sheet/index.js";
   import {
@@ -46,7 +47,7 @@
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-between h-16 lg:h-20">
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-2 group">
+      <NavigationLink href="/" class="flex items-center gap-2 group">
         <div class="relative w-10 h-10 rounded-xl bg-gradient-to-br from-primary via-accent to-cyber-pink flex items-center justify-center shadow-lg shadow-primary/25 group-hover:shadow-primary/40 transition-shadow">
           <Download class="w-5 h-5 text-white" />
           <div class="absolute inset-0 rounded-xl bg-gradient-to-br from-primary via-accent to-cyber-pink opacity-0 group-hover:opacity-100 blur-lg transition-opacity"></div>
@@ -57,7 +58,7 @@
           </span>
           <span class="text-[10px] text-muted-foreground -mt-1 hidden sm:block">Premium Digital Products</span>
         </div>
-      </a>
+      </NavigationLink>
 
       <!-- Desktop Navigation -->
       <nav class="hidden lg:flex items-center gap-1">
@@ -70,7 +71,7 @@
           <div class="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
             <div class="bg-card border border-border rounded-xl shadow-xl shadow-primary/10 p-2 min-w-[220px]">
               {#each categories as category}
-                <a
+                <NavigationLink
                   href={category.href}
                   class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-primary/10 transition-colors group/item"
                 >
@@ -78,27 +79,27 @@
                     <category.icon class="w-4 h-4 text-primary" />
                   </div>
                   <span class="font-medium text-sm">{category.label}</span>
-                </a>
+                </NavigationLink>
               {/each}
               <div class="border-t border-border mt-2 pt-2">
-                <a
+                <NavigationLink
                   href="/products"
                   class="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-primary hover:bg-primary/10 rounded-lg transition-colors"
                 >
                   View All Products
-                </a>
+                </NavigationLink>
               </div>
             </div>
           </div>
         </div>
 
         {#each navLinks.slice(1) as link}
-          <a
+          <NavigationLink
             href={link.href}
             class="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors rounded-lg hover:bg-primary/5"
           >
             {link.label}
-          </a>
+          </NavigationLink>
         {/each}
       </nav>
 
@@ -168,7 +169,7 @@
                 <!-- Categories -->
                 <p class="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-2 mb-2">Categories</p>
                 {#each categories as category}
-                  <a
+                  <NavigationLink
                     href={category.href}
                     class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10 transition-colors"
                   >
@@ -176,7 +177,7 @@
                       <category.icon class="w-4 h-4 text-primary" />
                     </div>
                     <span class="font-medium">{category.label}</span>
-                  </a>
+                  </NavigationLink>
                 {/each}
 
                 <div class="border-t border-border my-4"></div>
@@ -184,20 +185,20 @@
                 <!-- Quick Links -->
                 <p class="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-2 mb-2">Quick Links</p>
                 {#each navLinks as link}
-                  <a
+                  <NavigationLink
                     href={link.href}
                     class="px-3 py-2 font-medium hover:text-primary transition-colors rounded-lg hover:bg-primary/5"
                   >
                     {link.label}
-                  </a>
+                  </NavigationLink>
                 {/each}
-                <a
+                <NavigationLink
                   href="/downloads"
                   class="flex items-center gap-2 px-3 py-2 font-medium hover:text-primary transition-colors rounded-lg hover:bg-primary/5"
                 >
                   <Download class="w-4 h-4" />
                   My Downloads
-                </a>
+                </NavigationLink>
 
                 <div class="border-t border-border my-4"></div>
 

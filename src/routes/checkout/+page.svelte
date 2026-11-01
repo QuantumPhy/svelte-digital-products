@@ -1,4 +1,5 @@
 <script lang="ts">
+ import NavigationLink from "#lib/components/shared/NavigationLink.svelte";
   import { Button } from "#lib/components/ui/button/index.js";
   import * as Card from "#lib/components/ui/card/index.js";
   import { Badge } from "#lib/components/ui/badge/index.js";
@@ -320,7 +321,7 @@
               <div class="flex items-start gap-2">
                 <Checkbox id="agree-to-terms" bind:checked={agreeToTerms} class="mt-1" />
                 <label for="agree-to-terms" class="text-sm text-muted-foreground">
-                  I agree to the <a href="/terms" class="text-primary hover:underline">Terms of Service</a> and <a href="/licensing" class="text-primary hover:underline">License Agreement</a>
+                  I agree to the <NavigationLink href="/terms" class="text-primary hover:underline">Terms of Service</NavigationLink> and <NavigationLink href="/licensing" class="text-primary hover:underline">License Agreement</NavigationLink>
                 </label>
               </div>
             </Card.Content>

@@ -1,4 +1,5 @@
 <script lang="ts">
+ import NavigationLink from "#lib/components/shared/NavigationLink.svelte";
   import { Button } from "#lib/components/ui/button/index.js";
   import * as Card from "#lib/components/ui/card/index.js";
   import { Badge } from "#lib/components/ui/badge/index.js";
@@ -176,11 +177,11 @@ Whether you're starting fresh or looking to level up your skills, this course pr
 <section class="py-4 border-b border-border/50 bg-muted/30">
   <div class="container mx-auto px-4">
     <nav class="flex items-center gap-2 text-sm text-muted-foreground">
-      <a href="/" class="hover:text-primary transition-colors">Home</a>
+      <NavigationLink href="/" class="hover:text-primary transition-colors">Home</NavigationLink>
       <ChevronRight class="w-4 h-4" />
-      <a href="/products" class="hover:text-primary transition-colors">Products</a>
+      <NavigationLink href="/products" class="hover:text-primary transition-colors">Products</NavigationLink>
       <ChevronRight class="w-4 h-4" />
-      <a href="/products?category=courses" class="hover:text-primary transition-colors">{product.category}</a>
+      <NavigationLink href="/products?category=courses" class="hover:text-primary transition-colors">{product.category}</NavigationLink>
       <ChevronRight class="w-4 h-4" />
       <span class="text-foreground">{product.name}</span>
     </nav>
@@ -558,7 +559,7 @@ Whether you're starting fresh or looking to level up your skills, this course pr
     </div>
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
       {#each relatedProducts as product}
-        <a href="/products/{product.id}" class="group">
+        <NavigationLink href="/products/{product.id}" class="group">
           <Card.Root class="overflow-hidden border-border/50 hover:border-primary/50 transition-all hover:shadow-xl hover:shadow-primary/10 bg-card/50">
             <div class="relative overflow-hidden">
               <img
@@ -587,7 +588,7 @@ Whether you're starting fresh or looking to level up your skills, this course pr
               </div>
             </Card.Content>
           </Card.Root>
-        </a>
+        </NavigationLink>
       {/each}
     </div>
   </div>
