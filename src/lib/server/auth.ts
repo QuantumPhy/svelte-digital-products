@@ -1,3 +1,4 @@
+import { hashPassword, verifyPassword } from './passwords.js';
 import { dev } from '$app/env';
 import * as cookie from 'cookie';
 
@@ -20,20 +21,6 @@ export interface Session {
 const users = new Map<string, User>();
 const sessions = new Map<string, Session>();
 const passwordHashes = new Map<string, string>();
-
-// Simple password hashing (use bcrypt in production)
-async function hashPassword(password: string): Promise<string> {
-	const encoder = new TextEncoder();
-	const data = encoder.encode(password + 'salt_' + password);
-	const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-	const hashArray = Array.from(new Uint8Array(hashBuffer));
-	return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
-}
-
-async function verifyPassword(password: string, hash: string): Promise<boolean> {
-	const passwordHash = await hashPassword(password);
-	return passwordHash === hash;
-}
 
 export function generateId(): string {
 	return crypto.randomUUID();
@@ -60,12 +47,12 @@ export async function createUser(
 		createdAt: new Date()
 	};
 
+	// Complete password work before publishing any partial in-memory account.
+	const hash = password === null ? null : await hashPassword(password);
+	// Concurrent registration may have completed while password derivation yielded.
+	if (findUserByEmail(email)) throw new Error('User already exists');
 	users.set(user.id, user);
-
-	if (password) {
-		const hash = await hashPassword(password);
-		passwordHashes.set(user.id, hash);
-	}
+	if (hash) passwordHashes.set(user.id, hash);
 
 	return user;
 }
