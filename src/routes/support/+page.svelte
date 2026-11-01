@@ -1,4 +1,10 @@
 <script lang="ts">
+ import {onMount} from "svelte";
+ import {supportCopy} from "#lib/support-copy.js";
+ let formReady=$state(false);
+ let formResult=$state('');
+ onMount(()=>{formReady=true;});
+ function checkSample(event:SubmitEvent){event.preventDefault();(event.currentTarget as HTMLFormElement).reset();formResult=supportCopy.result;}
  import NavigationLink from "#lib/components/shared/NavigationLink.svelte";
   import { Button } from "#lib/components/ui/button/index.js";
   import * as Card from "#lib/components/ui/card/index.js";
@@ -375,18 +381,18 @@
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold mb-4">Still Need Help?</h2>
         <p class="text-muted-foreground">
-          Can't find what you're looking for? Send us a message.
+          Explore the sample support fields. Live message delivery is not connected.
         </p>
       </div>
 
       <Card.Root class="bg-card/50 border-border/50">
         <Card.Content class="pt-6">
-          <form class="space-y-6">
+          <p class="text-sm text-muted-foreground mb-4">{supportCopy.notice}</p><form onsubmit={checkSample} class="space-y-6"><fieldset disabled={!formReady} class="contents"><legend class="sr-only">Sample support fields</legend>
             <div class="grid md:grid-cols-2 gap-4">
               <div>
                 <label for="support-name" class="block text-sm font-medium mb-2">Name</label>
                 <input
-                  id="support-name"
+                  id="support-name" name="name" required maxlength="100"
                   type="text"
                   placeholder="Your name"
                   class="w-full px-4 py-2.5 bg-background border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
@@ -395,7 +401,7 @@
               <div>
                 <label for="support-email" class="block text-sm font-medium mb-2">Email</label>
                 <input
-                  id="support-email"
+                  id="support-email" name="email" required maxlength="254"
                   type="email"
                   placeholder="your@email.com"
                   class="w-full px-4 py-2.5 bg-background border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
@@ -419,7 +425,7 @@
             <div>
               <label for="support-message" class="block text-sm font-medium mb-2">Message</label>
               <textarea
-                id="support-message"
+                id="support-message" name="message" required maxlength="3000"
                 rows="5"
                 placeholder="Describe your issue or question..."
                 class="w-full px-4 py-2.5 bg-background border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none"
@@ -433,17 +439,20 @@
               </label>
             </div>
 
-            <Button class="w-full bg-gradient-to-r from-primary to-accent text-white border-0" size="lg">
-              Send Message
+            <Button type="submit" class="w-full bg-gradient-to-r from-primary to-accent text-white border-0" size="lg">
+              Check Sample Fields
               <ArrowRight class="w-5 h-5 ml-2" />
             </Button>
-          </form>
+          </fieldset></form>{#if formResult}<p role="status" class="mt-4 text-sm">{formResult}</p>{/if}
         </Card.Content>
       </Card.Root>
 
       <div class="text-center mt-8 text-sm text-muted-foreground">
-        <p>Average response time: <span class="font-medium text-foreground">Under 24 hours</span></p>
+        <p>No response or delivery time is promised in this preview.</p>
       </div>
     </div>
   </div>
 </section>
+
+<section id="chat" class="py-12 bg-muted/30"><div class="container mx-auto px-4 max-w-3xl space-y-4"><h2 class="text-2xl font-bold">Live chat availability</h2><p>{supportCopy.chat}</p></div></section>
+<section id="videos" class="py-12"><div class="container mx-auto px-4 max-w-3xl space-y-4"><h2 class="text-2xl font-bold">Tutorial availability</h2><p>{supportCopy.video}</p></div></section>

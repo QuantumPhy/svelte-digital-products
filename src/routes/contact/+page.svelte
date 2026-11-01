@@ -24,8 +24,9 @@
 
 			<div class="bg-card border rounded-xl p-8 text-center">
 				<p class="text-muted-foreground">
-					This page is coming soon. Check back later for updates.
+					Live support messaging is not connected in this preview. You can browse the original sample FAQs and check sample form fields locally; no message is sent or saved.
 				</p>
+			<Button href="/support" variant="outline" class="mt-6">Browse sample support</Button>
 			</div>
 		</div>
 	</div>
