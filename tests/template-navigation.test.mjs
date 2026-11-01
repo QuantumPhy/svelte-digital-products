@@ -20,3 +20,5 @@ test('unsafe schemes and traversal cannot escape the preview namespace',()=>{
  for(const href of ['javascript:alert(1)','data:text/html,example','/../private','/%2e%2e/private','/a%2fb','/a%5cb','/a\\b','/%ZZ'])assert.deepEqual(navigationTarget(href,base),{kind:'blocked'},href);
  assert.deepEqual(navigationTarget(undefined,base),{kind:'blocked'});
 });
+
+test('empty placeholder destinations are unavailable rather than focusable fake links',()=>{assert.deepEqual(navigationTarget('#',base),{kind:'blocked'});assert.deepEqual(navigationTarget('  #  ',base),{kind:'blocked'});assert.deepEqual(navigationTarget('#faq',base),{kind:'fragment',fragment:'faq'});});

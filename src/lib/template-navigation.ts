@@ -6,7 +6,7 @@ export type NavigationTarget =
 
 /** Normalize a link before SvelteKit resolves it, without applying the base twice. */
 export function navigationTarget(href: string | null | undefined, base: string): NavigationTarget {
-  if (!href) return { kind: 'blocked' };
+  if (!href || href.trim() === '#') return { kind: 'blocked' };
   if (href.startsWith('#')) return { kind: 'fragment', fragment: href.slice(1) };
   if (/^(https?:|mailto:|tel:|blob:)/i.test(href) || href.startsWith('//')) {
     return { kind: 'external', href };
