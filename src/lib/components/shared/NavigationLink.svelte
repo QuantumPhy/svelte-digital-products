@@ -4,6 +4,7 @@
   import type { Snippet } from 'svelte';
   import type { HTMLAnchorAttributes } from 'svelte/elements';
   import { navigationTarget } from '#lib/template-navigation.js';
+  import {previewCopy} from '#lib/preview-copy.js';
 
   type Props = Omit<HTMLAnchorAttributes, 'children'> & {
     children?: Snippet;
@@ -26,7 +27,7 @@
     {@render children?.()}
   </a>
 {:else}
-  <a bind:this={ref} {...attributes} aria-disabled="true">
+  <a bind:this={ref} {...attributes} role="link" aria-disabled="true" tabindex={-1} title={previewCopy.destinationUnavailable} onclick={(event) => { event.preventDefault(); event.stopPropagation(); }}>
     {@render children?.()}
   </a>
 {/if}
