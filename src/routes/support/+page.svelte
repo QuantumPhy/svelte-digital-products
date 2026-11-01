@@ -146,14 +146,7 @@
     }
   ];
 
-  const popularArticles = [
-    { title: "Getting Started Guide", category: "Basics", reads: "15.2k", slug: "getting-started" },
-    { title: "How to Download Products", category: "Downloads", reads: "12.8k", slug: "how-to-download" },
-    { title: "Understanding License Types", category: "Licensing", reads: "9.5k", slug: "license-types" },
-    { title: "Requesting a Refund", category: "Refunds", reads: "8.1k", slug: "requesting-refund" },
-    { title: "Upgrading Your License", category: "Licensing", reads: "6.7k", slug: "upgrade-license" },
-    { title: "Payment Methods & Security", category: "Payments", reads: "5.3k", slug: "payment-security" }
-  ];
+  import {popularArticles} from '#lib/support-articles.js';
 </script>
 
 <svelte:head>

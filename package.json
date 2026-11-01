@@ -18,7 +18,7 @@
     "build:table-harness": "vite build --config tests/table-harness/vite.config.ts",
     "test:passwords": "node --test tests/password-storage.test.mjs",
     "test:commerce": "node --test tests/commerce-boundary.test.mjs tests/commerce-provider.test.mjs",
-    "build:server": "node --test tests/template-navigation.test.mjs && node --test tests/commerce-boundary.test.mjs tests/commerce-provider.test.mjs && node --test tests/password-storage.test.mjs && node --test tests/svelte-merge-contract.test.mjs tests/table-contract.test.mjs && vite build"
+    "build:server": "node --test tests/support-articles.test.mjs && node --test tests/template-navigation.test.mjs && node --test tests/commerce-boundary.test.mjs tests/commerce-provider.test.mjs && node --test tests/password-storage.test.mjs && node --test tests/svelte-merge-contract.test.mjs tests/table-contract.test.mjs && vite build"
   },
   "devDependencies": {
     "@lucide/svelte": "^1.63.0",
