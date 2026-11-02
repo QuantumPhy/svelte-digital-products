@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
+	import {pendingCheckout,pendingCheckoutKey} from '#lib/checkout-state.js';
 	import { Button } from '#lib/components/ui/button/index.js';
 	import { Loader2, CreditCard } from '@lucide/svelte';
 	import { getCartItemsForCheckout } from '#lib/stores/cart.js';
@@ -27,7 +29,7 @@
 				return;
 			}
 
-			const response = await fetch('/api/checkout', {
+			const response = await fetch(resolve('/api/checkout'), {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -46,6 +48,8 @@
 
 			// Redirect to Stripe Checkout
 			if (data.url) {
+				const pending=pendingCheckout(data.sessionId,items);
+				try { if(pending)sessionStorage.setItem(pendingCheckoutKey(resolve('/api/checkout')),pending); } catch { /* Keep the cart when storage is unavailable. */ }
 				window.location.href = data.url;
 			} else { error = 'Checkout is unavailable. Please try again.'; }
 		} catch (err) {

@@ -1,47 +1,46 @@
 <script lang="ts">
+ import {isStaticPreview} from "#lib/preview.js";
+ import NavigationLink from "#lib/components/shared/NavigationLink.svelte";
+	import { resolve } from '$app/paths';
+	import {checkoutCopy} from '#lib/commerce-copy.js';
+	import {confirmedCheckout,CheckoutStatusError,canClearPurchasedCart,pendingCheckoutKey,isPendingCheckout} from '#lib/checkout-state.js';
 	import { page } from '$app/state';
 	import { Button } from '#lib/components/ui/button/index.js';
 	import { CheckCircle, Package, ArrowRight, Loader2 } from '@lucide/svelte';
 	import { onMount } from 'svelte';
-	import { cart } from '#lib/stores/cart.js';
+	import {cart,getCartItemsForCheckout} from '#lib/stores/cart.js';
 
 	let loading = $state(true);
-	let orderDetails = $state<{
-		id: string;
-		email: string;
-		amount: number;
-		currency: string;
-	} | null>(null);
+	let orderDetails = $state<ReturnType<typeof confirmedCheckout>|null>(null);
 	let error = $state('');
 
 	onMount(async () => {
-		const sessionId = page.url.searchParams.get('session_id');
+		if(isStaticPreview){error=checkoutCopy.unavailable;loading=false;return;}
+ const sessionId = page.url.searchParams.get('session_id');
 
 		if (!sessionId) {
+			error=checkoutCopy.noSession;
 			loading = false;
 			return;
 		}
 
 		try {
-			const response = await fetch(`/api/checkout?session_id=${sessionId}`);
+			const response = await fetch(resolve('/api/checkout')+'?'+new URLSearchParams({session_id:sessionId}));
 			const data = await response.json();
 
 			if (response.ok) {
-				orderDetails = {
-					id: data.id,
-					email: data.customerEmail,
-					amount: data.amountTotal,
-					currency: data.currency?.toUpperCase() || 'USD'
-				};
-
-				// Clear cart after successful order
-				cart.clear();
+				orderDetails=confirmedCheckout(data,sessionId);
+				// Clear only a verified one-time purchase whose captured cart is unchanged.
+				try {
+					const key=pendingCheckoutKey(resolve('/api/checkout')),pending=sessionStorage.getItem(key);
+					if(canClearPurchasedCart(orderDetails,pending,getCartItemsForCheckout()))cart.clear();
+					if(isPendingCheckout(pending,orderDetails.id))sessionStorage.removeItem(key);
+				} catch { /* Keep the cart when storage is unavailable. */ }
 			} else {
 				error = data.message || 'Failed to retrieve order details';
 			}
 		} catch (err) {
-			error = 'Failed to load order details';
-			console.error('Error:', err);
+			error=err instanceof CheckoutStatusError?err.message:checkoutCopy.unavailable;
 		} finally {
 			loading = false;
 		}
@@ -49,11 +48,14 @@
 </script>
 
 <svelte:head>
-	<title>Order Confirmed</title>
+	<title>{checkoutCopy.title}</title>
+	<meta name="description" content="View a checkout result verified for the signed-in account." />
+	<meta name="robots" content="noindex,nofollow" />
 </svelte:head>
 
 <div class="min-h-screen bg-background flex items-center justify-center px-4">
 	<div class="max-w-md w-full text-center space-y-6">
+		<h1 class="sr-only">{checkoutCopy.title}</h1>
 		{#if loading}
 			<div class="flex flex-col items-center gap-4">
 				<Loader2 class="h-12 w-12 text-primary animate-spin" />
@@ -75,14 +77,9 @@
 				</div>
 
 				<div class="space-y-2">
-					<h1 class="text-2xl font-bold">Order Confirmed!</h1>
+					<h2 class="text-2xl font-bold">{orderDetails?.paymentStatus==='paid'?checkoutCopy.paidHeading:checkoutCopy.completedHeading}</h2>
 					<p class="text-muted-foreground">
-						Thank you for your purchase. We've sent a confirmation email to
-						{#if orderDetails?.email}
-							<span class="font-medium text-foreground">{orderDetails.email}</span>
-						{:else}
-							your email
-						{/if}
+						{checkoutCopy.confirmedDetails}
 					</p>
 				</div>
 
@@ -115,7 +112,7 @@
 
 			<p class="text-sm text-muted-foreground">
 				Questions about your order?
-				<a href="/contact" class="text-primary hover:underline">Contact us</a>
+				<NavigationLink href="/contact" class="text-primary hover:underline">Contact us</NavigationLink>
 			</p>
 		{/if}
 	</div>

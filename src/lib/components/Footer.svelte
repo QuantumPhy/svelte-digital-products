@@ -1,4 +1,7 @@
 <script lang="ts">
+ import {previewCopy} from "#lib/preview-copy.js";
+ import {isStaticPreview} from "#lib/preview.js";
+ import NavigationLink from "#lib/components/shared/NavigationLink.svelte";
   import { Button } from "#lib/components/ui/button/index.js";
   import { Separator } from "#lib/components/ui/separator/index.js";
   import { Download, Mail, CreditCard, Shield, Zap, HeadphonesIcon, ArrowRight } from "@lucide/svelte";
@@ -50,6 +53,7 @@ import { Twitter, Github, Linkedin, Youtube } from "../icons/cocoding-brands/ind
 </script>
 
 <footer class="bg-gradient-to-b from-background to-muted/30 border-t border-border">
+ {#if isStaticPreview}<p class="px-4 py-3 text-sm" role="note">{previewCopy.newsletter}</p>{/if}
   <!-- Features Bar -->
   <div class="border-b border-border/50">
     <div class="container mx-auto px-4 py-8">
@@ -82,13 +86,13 @@ import { Twitter, Github, Linkedin, Youtube } from "../icons/cocoding-brands/ind
         <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
           <div class="relative flex-1">
             <Mail class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-            <input
+            <input disabled={isStaticPreview} aria-label="Newsletter email"
               type="email"
               placeholder="Enter your email"
               class="w-full pl-11 pr-4 py-3 bg-background border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
             />
           </div>
-          <Button class="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg shadow-primary/25 text-white border-0 px-6">
+          <Button disabled={isStaticPreview} aria-label="Subscribe to newsletter" title={isStaticPreview ? previewCopy.newsletter : undefined} class="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg shadow-primary/25 text-white border-0 px-6">
             Subscribe
             <ArrowRight class="w-4 h-4 ml-2" />
           </Button>
@@ -105,7 +109,7 @@ import { Twitter, Github, Linkedin, Youtube } from "../icons/cocoding-brands/ind
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12">
       <!-- Brand Column -->
       <div class="col-span-2 md:col-span-3 lg:col-span-1">
-        <a href="/" class="flex items-center gap-2 mb-4 group">
+        <NavigationLink href="/" class="flex items-center gap-2 mb-4 group">
           <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary via-accent to-cyber-pink flex items-center justify-center shadow-lg shadow-primary/25">
             <Download class="w-5 h-5 text-white" />
           </div>
@@ -114,19 +118,19 @@ import { Twitter, Github, Linkedin, Youtube } from "../icons/cocoding-brands/ind
               DigitalVault
             </span>
           </div>
-        </a>
+        </NavigationLink>
         <p class="text-sm text-muted-foreground mb-6 max-w-xs">
           Your trusted marketplace for premium digital products. Software, templates, courses, and more from top creators worldwide.
         </p>
         <div class="flex items-center gap-2">
           {#each socialLinks as social}
-            <a
+            <NavigationLink
               href={social.href}
               class="w-9 h-9 rounded-lg bg-muted hover:bg-primary/10 flex items-center justify-center transition-colors group"
               aria-label={social.label}
             >
               <social.icon class="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-            </a>
+            </NavigationLink>
           {/each}
         </div>
       </div>
@@ -137,12 +141,12 @@ import { Twitter, Github, Linkedin, Youtube } from "../icons/cocoding-brands/ind
         <ul class="space-y-3">
           {#each productCategories as link}
             <li>
-              <a
+              <NavigationLink
                 href={link.href}
                 class="text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 {link.label}
-              </a>
+              </NavigationLink>
             </li>
           {/each}
         </ul>
@@ -154,12 +158,12 @@ import { Twitter, Github, Linkedin, Youtube } from "../icons/cocoding-brands/ind
         <ul class="space-y-3">
           {#each supportLinks as link}
             <li>
-              <a
+              <NavigationLink
                 href={link.href}
                 class="text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 {link.label}
-              </a>
+              </NavigationLink>
             </li>
           {/each}
         </ul>
@@ -171,12 +175,12 @@ import { Twitter, Github, Linkedin, Youtube } from "../icons/cocoding-brands/ind
         <ul class="space-y-3">
           {#each companyLinks as link}
             <li>
-              <a
+              <NavigationLink
                 href={link.href}
                 class="text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 {link.label}
-              </a>
+              </NavigationLink>
             </li>
           {/each}
         </ul>
@@ -188,12 +192,12 @@ import { Twitter, Github, Linkedin, Youtube } from "../icons/cocoding-brands/ind
         <ul class="space-y-3">
           {#each legalLinks as link}
             <li>
-              <a
+              <NavigationLink
                 href={link.href}
                 class="text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 {link.label}
-              </a>
+              </NavigationLink>
             </li>
           {/each}
         </ul>

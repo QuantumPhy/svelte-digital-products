@@ -1,4 +1,6 @@
 <script lang="ts">
+ import {templateHref} from "#lib/template-href.js";
+ import NavigationLink from "#lib/components/shared/NavigationLink.svelte";
 	import { Button } from '#lib/components/ui/button/index.js';
 	import { Input } from '#lib/components/ui/input/index.js';
 	import { Label } from '#lib/components/ui/label/index.js';
@@ -17,7 +19,7 @@ import { Chrome, Github } from '../../../lib/icons/cocoding-brands/index.js';
 		error = '';
 
 		try {
-			const response = await fetch('/auth/login', {
+			const response = await fetch(templateHref('/auth/login'), {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ email, password })
@@ -30,7 +32,7 @@ import { Chrome, Github } from '../../../lib/icons/cocoding-brands/index.js';
 				return;
 			}
 
-			window.location.href = '/';
+			window.location.href = templateHref('/');
 		} catch (err) {
 			error = 'An error occurred. Please try again.';
 		} finally {
@@ -39,11 +41,11 @@ import { Chrome, Github } from '../../../lib/icons/cocoding-brands/index.js';
 	}
 
 	function loginWithGoogle() {
-		window.location.href = '/auth/callback/google/authorize';
+		window.location.href = templateHref('/auth/callback/google/authorize');
 	}
 
 	function loginWithGitHub() {
-		window.location.href = '/auth/callback/github/authorize';
+		window.location.href = templateHref('/auth/callback/github/authorize');
 	}
 </script>
 
@@ -112,9 +114,9 @@ import { Chrome, Github } from '../../../lib/icons/cocoding-brands/index.js';
 				<div class="space-y-2">
 					<div class="flex justify-between">
 						<Label for="password">Password</Label>
-						<a href="/auth/forgot-password" class="text-sm text-primary hover:underline">
+						<NavigationLink href="/auth/forgot-password" class="text-sm text-primary hover:underline">
 							Forgot password?
-						</a>
+						</NavigationLink>
 					</div>
 					<div class="relative">
 						<Lock class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -142,9 +144,9 @@ import { Chrome, Github } from '../../../lib/icons/cocoding-brands/index.js';
 
 		<p class="text-center text-sm text-muted-foreground">
 			Don't have an account?
-			<a href="/auth/register" class="text-primary hover:underline font-medium">
+			<NavigationLink href="/auth/register" class="text-primary hover:underline font-medium">
 				Sign up
-			</a>
+			</NavigationLink>
 		</p>
 	</div>
 </div>

@@ -42,6 +42,7 @@
 </script>
 
 <script lang="ts">
+ import NavigationLink from "#lib/components/shared/NavigationLink.svelte";
 	let {
 		class: className,
 		variant = "default",
@@ -56,8 +57,8 @@
 </script>
 
 {#if href}
-	<a
-		bind:this={ref}
+	<NavigationLink
+		bind:ref={ref}
 		data-slot="button"
 		class={cn(buttonVariants({ variant, size }), className)}
 		href={disabled ? undefined : href}
@@ -67,7 +68,7 @@
 		{...restProps}
 	>
 		{@render children?.()}
-	</a>
+	</NavigationLink>
 {:else}
 	<button
 		bind:this={ref}

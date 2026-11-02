@@ -1,4 +1,5 @@
 <script lang="ts">
+ import NavigationLink from "#lib/components/shared/NavigationLink.svelte";
   import { Button } from "#lib/components/ui/button/index.js";
   import * as Card from "#lib/components/ui/card/index.js";
   import { Badge } from "#lib/components/ui/badge/index.js";
@@ -405,7 +406,7 @@
 
     <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
       {#each categories as category}
-        <a
+        <NavigationLink
           href="/products?category={category.id}"
           class="group relative overflow-hidden rounded-2xl aspect-[4/3] lg:aspect-[3/4]"
         >
@@ -423,7 +424,7 @@
             <p class="text-sm text-white/70">{category.description}</p>
             <p class="text-xs text-white/50 mt-2">{category.count} products</p>
           </div>
-        </a>
+        </NavigationLink>
       {/each}
     </div>
   </div>
@@ -464,7 +465,7 @@
               {product.badge}
             </Badge>
             <div class="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-              <button class="w-8 h-8 bg-white/90 backdrop-blur rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg">
+              <button aria-label="Favorite product" class="w-8 h-8 bg-white/90 backdrop-blur rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg">
                 <Heart class="w-4 h-4 text-foreground" />
               </button>
             </div>
@@ -528,7 +529,7 @@
 
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
       {#each trendingProducts as product}
-        <a href="/products/{product.id}" class="group">
+        <NavigationLink href="/products/{product.id}" class="group">
           <div class="relative overflow-hidden rounded-xl aspect-square mb-3">
             <img
               src={product.image}
@@ -547,7 +548,7 @@
               {product.rating}
             </div>
           </div>
-        </a>
+        </NavigationLink>
       {/each}
     </div>
   </div>
@@ -836,7 +837,7 @@
       Join over 50,000 creators and developers who trust DigitalVault for their digital product needs.
     </p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <Button size="lg" class="bg-white text-primary hover:bg-white/90 shadow-xl border-0 h-14 px-8" href="/products">
+      <Button size="lg" class="bg-white text-electric-purple-dark hover:bg-white/90 shadow-xl border-0 h-14 px-8" href="/products">
         Browse Products
         <ArrowRight class="w-5 h-5 ml-2" />
       </Button>

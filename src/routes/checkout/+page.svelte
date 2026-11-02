@@ -1,4 +1,5 @@
 <script lang="ts">
+ import NavigationLink from "#lib/components/shared/NavigationLink.svelte";
   import { Button } from "#lib/components/ui/button/index.js";
   import * as Card from "#lib/components/ui/card/index.js";
   import { Badge } from "#lib/components/ui/badge/index.js";
@@ -58,6 +59,7 @@
   <title>Checkout - DigitalVault</title>
 </svelte:head>
 
+<h1 class="sr-only">Sample checkout</h1>
 <!-- Progress Header -->
 <section class="py-4 border-b border-border/50 bg-muted/30">
   <div class="container mx-auto px-4">
@@ -73,7 +75,7 @@
           { num: 3, label: "Confirmation" }
         ] as s}
           <div class="flex items-center gap-2">
-            <div class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold {step >= s.num ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'}">
+            <div class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold {step >= s.num ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}">
               {#if step > s.num}
                 <CheckCircle class="w-4 h-4" />
               {:else}
@@ -320,7 +322,7 @@
               <div class="flex items-start gap-2">
                 <Checkbox id="agree-to-terms" bind:checked={agreeToTerms} class="mt-1" />
                 <label for="agree-to-terms" class="text-sm text-muted-foreground">
-                  I agree to the <a href="/terms" class="text-primary hover:underline">Terms of Service</a> and <a href="/licensing" class="text-primary hover:underline">License Agreement</a>
+                  I agree to the <NavigationLink href="/terms" class="text-primary hover:underline">Terms of Service</NavigationLink> and <NavigationLink href="/licensing" class="text-primary hover:underline">License Agreement</NavigationLink>
                 </label>
               </div>
             </Card.Content>

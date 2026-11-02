@@ -1,0 +1,1 @@
+export const supportCopy={notice:'Sample support form. Fields are checked locally; no message, purchase history or attachment is sent.',result:'Sample fields checked locally. No support request was sent or saved.',chat:'Live chat is not connected in this preview. No agent or reply service is available.',video:'No tutorial videos were supplied for this preview.'} as const;

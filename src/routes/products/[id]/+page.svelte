@@ -1,4 +1,8 @@
 <script lang="ts">
+ import {cart} from "#lib/stores/cart.js";
+ import type {PageData} from "./$types";
+ let {data}:{data:PageData}=$props();
+ import NavigationLink from "#lib/components/shared/NavigationLink.svelte";
   import { Button } from "#lib/components/ui/button/index.js";
   import * as Card from "#lib/components/ui/card/index.js";
   import { Badge } from "#lib/components/ui/badge/index.js";
@@ -29,7 +33,7 @@
   import { page } from '$app/state';
 
   // Mock product data - in real app would come from API
-  const product = {
+  const detailedProduct = {
     id: 2,
     name: "Full-Stack Development Masterclass",
     description: "A comprehensive course covering everything you need to become a full-stack developer. From React and Node.js to PostgreSQL and deployment.",
@@ -96,7 +100,13 @@ Whether you're starting fresh or looking to level up your skills, this course pr
     level: "Beginner to Advanced"
   };
 
-  const reviews = [
+    const product=$derived.by(()=>{
+   const c=data.product;
+   if(c.id===2)return {...detailedProduct,...c,description:c.description??detailedProduct.description,author:detailedProduct.author,gallery:detailedProduct.gallery};
+   return {...detailedProduct,...c,description:c.description??c.name,longDescription:c.description??c.name,gallery:[c.image],author:{...detailedProduct.author,name:c.author??"Sample creator",avatar:"",role:"Sample creator",bio:"A detailed creator profile has not been supplied for this sample product.",products:0,sales:"Not supplied",rating:0},features:[],includes:[],requirements:[],lastUpdated:"Not supplied",language:"Not supplied",level:"Not supplied"};
+  });
+
+  const providedReviews = [
     {
       id: 1,
       author: "James Wilson",
@@ -166,6 +176,7 @@ Whether you're starting fresh or looking to level up your skills, this course pr
 
   let selectedImage = $state(0);
   let selectedLicense = $state<"personal" | "commercial">("personal");
+ const reviews=$derived(product.id===2?providedReviews:[]);
 </script>
 
 <svelte:head>
@@ -176,11 +187,11 @@ Whether you're starting fresh or looking to level up your skills, this course pr
 <section class="py-4 border-b border-border/50 bg-muted/30">
   <div class="container mx-auto px-4">
     <nav class="flex items-center gap-2 text-sm text-muted-foreground">
-      <a href="/" class="hover:text-primary transition-colors">Home</a>
+      <NavigationLink href="/" class="hover:text-primary transition-colors">Home</NavigationLink>
       <ChevronRight class="w-4 h-4" />
-      <a href="/products" class="hover:text-primary transition-colors">Products</a>
+      <NavigationLink href="/products" class="hover:text-primary transition-colors">Products</NavigationLink>
       <ChevronRight class="w-4 h-4" />
-      <a href="/products?category=courses" class="hover:text-primary transition-colors">{product.category}</a>
+      <NavigationLink href="/products?category=courses" class="hover:text-primary transition-colors">{product.category}</NavigationLink>
       <ChevronRight class="w-4 h-4" />
       <span class="text-foreground">{product.name}</span>
     </nav>
@@ -283,7 +294,7 @@ Whether you're starting fresh or looking to level up your skills, this course pr
             >
               <div class="flex items-center justify-between mb-2">
                 <span class="font-semibold">Commercial</span>
-                <span class="font-bold text-primary">${Math.round(product.price * 1.5)}</span>
+                <span class="font-bold text-primary">${(product.price * 1.5).toFixed(2)}</span>
               </div>
               <p class="text-sm text-muted-foreground">For client & business use</p>
             </button>
@@ -292,14 +303,14 @@ Whether you're starting fresh or looking to level up your skills, this course pr
 
         <!-- Actions -->
         <div class="flex flex-col sm:flex-row gap-3 mb-6">
-          <Button size="lg" class="flex-1 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg shadow-primary/25 text-white border-0 h-14" href="/cart">
+          <Button size="lg" class="flex-1 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg shadow-primary/25 text-white border-0 h-14" href="/cart" onclick={()=>cart.addItem({id:product.id,name:product.name,price:product.price,image:product.image,variant:selectedLicense,quantity:1})}>
             <ShoppingCart class="w-5 h-5 mr-2" />
             Add to Cart
           </Button>
-          <Button size="lg" variant="outline" class="border-primary/30 hover:bg-primary/10 h-14">
+          <Button aria-label="Favorite product" size="lg" variant="outline" class="border-primary/30 hover:bg-primary/10 h-14">
             <Heart class="w-5 h-5" />
           </Button>
-          <Button size="lg" variant="outline" class="border-primary/30 hover:bg-primary/10 h-14">
+          <Button aria-label="Share product" size="lg" variant="outline" class="border-primary/30 hover:bg-primary/10 h-14">
             <Share2 class="w-5 h-5" />
           </Button>
         </div>
@@ -328,17 +339,17 @@ Whether you're starting fresh or looking to level up your skills, this course pr
 <section class="py-12 bg-muted/30">
   <div class="container mx-auto px-4">
     <Tabs.Root value="overview" class="w-full">
-      <Tabs.List class="w-full justify-start bg-transparent border-b border-border rounded-none p-0 mb-8">
-        <Tabs.Trigger value="overview" class="data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none">
+      <Tabs.List class="h-auto flex-wrap w-full justify-start bg-card border-b border-border rounded-none p-0 mb-8">
+        <Tabs.Trigger value="overview" class="data-[state=active]:bg-card data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none">
           Overview
         </Tabs.Trigger>
-        <Tabs.Trigger value="includes" class="data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none">
+        <Tabs.Trigger value="includes" class="data-[state=active]:bg-card data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none">
           What's Included
         </Tabs.Trigger>
-        <Tabs.Trigger value="reviews" class="data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none">
+        <Tabs.Trigger value="reviews" class="data-[state=active]:bg-card data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none">
           Reviews ({product.reviews})
         </Tabs.Trigger>
-        <Tabs.Trigger value="author" class="data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none">
+        <Tabs.Trigger value="author" class="data-[state=active]:bg-card data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none">
           About Author
         </Tabs.Trigger>
       </Tabs.List>
@@ -558,7 +569,7 @@ Whether you're starting fresh or looking to level up your skills, this course pr
     </div>
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
       {#each relatedProducts as product}
-        <a href="/products/{product.id}" class="group">
+        <NavigationLink href="/products/{product.id}" class="group">
           <Card.Root class="overflow-hidden border-border/50 hover:border-primary/50 transition-all hover:shadow-xl hover:shadow-primary/10 bg-card/50">
             <div class="relative overflow-hidden">
               <img
@@ -587,7 +598,7 @@ Whether you're starting fresh or looking to level up your skills, this course pr
               </div>
             </Card.Content>
           </Card.Root>
-        </a>
+        </NavigationLink>
       {/each}
     </div>
   </div>

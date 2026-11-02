@@ -1,4 +1,6 @@
 <script lang="ts">
+ import {templateHref} from "#lib/template-href.js";
+ import NavigationLink from "#lib/components/shared/NavigationLink.svelte";
 	import { Button } from '#lib/components/ui/button/index.js';
 	import { Input } from '#lib/components/ui/input/index.js';
 	import { Label } from '#lib/components/ui/label/index.js';
@@ -30,7 +32,7 @@ import { Chrome, Github } from '../../../lib/icons/cocoding-brands/index.js';
 		error = '';
 
 		try {
-			const response = await fetch('/auth/register', {
+			const response = await fetch(templateHref('/auth/register'), {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ name, email, password })
@@ -43,7 +45,7 @@ import { Chrome, Github } from '../../../lib/icons/cocoding-brands/index.js';
 				return;
 			}
 
-			window.location.href = '/';
+			window.location.href = templateHref('/');
 		} catch (err) {
 			error = 'An error occurred. Please try again.';
 		} finally {
@@ -52,11 +54,11 @@ import { Chrome, Github } from '../../../lib/icons/cocoding-brands/index.js';
 	}
 
 	function signupWithGoogle() {
-		window.location.href = '/auth/callback/google/authorize';
+		window.location.href = templateHref('/auth/callback/google/authorize');
 	}
 
 	function signupWithGitHub() {
-		window.location.href = '/auth/callback/github/authorize';
+		window.location.href = templateHref('/auth/callback/github/authorize');
 	}
 </script>
 
@@ -179,18 +181,18 @@ import { Chrome, Github } from '../../../lib/icons/cocoding-brands/index.js';
 
 				<p class="text-xs text-center text-muted-foreground">
 					By creating an account, you agree to our
-					<a href="/terms" class="text-primary hover:underline">Terms of Service</a>
+					<NavigationLink href="/terms" class="text-primary underline underline-offset-2">Terms of Service</NavigationLink>
 					and
-					<a href="/privacy" class="text-primary hover:underline">Privacy Policy</a>
+					<NavigationLink href="/privacy" class="text-primary underline underline-offset-2">Privacy Policy</NavigationLink>
 				</p>
 			</form>
 		</div>
 
 		<p class="text-center text-sm text-muted-foreground">
 			Already have an account?
-			<a href="/auth/login" class="text-primary hover:underline font-medium">
+			<NavigationLink href="/auth/login" class="text-primary underline underline-offset-2 font-medium">
 				Sign in
-			</a>
+			</NavigationLink>
 		</p>
 	</div>
 </div>

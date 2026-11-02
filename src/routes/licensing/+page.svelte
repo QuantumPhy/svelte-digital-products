@@ -250,7 +250,7 @@
     </div>
 
     <div class="max-w-4xl mx-auto overflow-x-auto">
-      <table class="w-full">
+      <table tabindex="0" aria-label="Sample product license comparison" class="w-full">
         <thead>
           <tr class="border-b border-border">
             <th class="py-4 px-4 text-left font-semibold">Feature</th>

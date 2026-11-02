@@ -48,3 +48,6 @@ coverage/
 *.backup
 *.bak
 .claude/
+
+# Generated frontend-only preview graph
+src/preview-routes/

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
+	import { checkoutCopy } from '#lib/commerce-copy.js';
 	import { Button } from '#lib/components/ui/button/index.js';
 	import { Badge } from '#lib/components/ui/badge/index.js';
 	import { Check, Loader2 } from '@lucide/svelte';
@@ -29,21 +31,16 @@
 	let error = $state('');
 
 	async function subscribe() {
-		if (!email) {
-			error = 'Please provide your email';
-			return;
-		}
-
 		loading = true;
 		error = '';
 
 		try {
-			const response = await fetch('/api/subscriptions', {
+			const response = await fetch(resolve('/api/checkout'), {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
 					priceId,
-					email
+					mode: 'subscription'
 				})
 			});
 
@@ -54,14 +51,9 @@
 				return;
 			}
 
-			// Handle subscription completion
-			if (data.clientSecret) {
-				// Redirect to payment completion
-				window.location.href = `/checkout/subscription?client_secret=${data.clientSecret}&subscription_id=${data.subscriptionId}`;
-			} else if (data.status === 'active') {
-				// Trial or no payment required
-				window.location.href = '/account?subscription=success';
-			}
+			// Hosted checkout handles payment details; no client capability enters a URL.
+			if(data.url)window.location.href=data.url;
+			else error=checkoutCopy.hostedUnavailable;
 		} catch (err) {
 			error = 'An error occurred. Please try again.';
 			console.error('Subscription error:', err);
