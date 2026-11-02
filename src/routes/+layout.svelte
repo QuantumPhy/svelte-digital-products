@@ -15,7 +15,7 @@
   <meta name="description" content="Your trusted marketplace for premium digital products. Software, templates, courses, ebooks, and digital assets from top creators worldwide." />
 </svelte:head>
 
-<div class="min-h-screen flex flex-col dark">
+<div class="min-h-screen flex flex-col dark bg-background text-foreground">
   <Header />
   <main class="flex-1">
     {#if isStaticPreview}<p class="border-b px-4 py-3 text-sm" role="note">{previewCopy.notice}</p>{/if}
