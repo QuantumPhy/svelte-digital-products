@@ -294,7 +294,7 @@ Whether you're starting fresh or looking to level up your skills, this course pr
             >
               <div class="flex items-center justify-between mb-2">
                 <span class="font-semibold">Commercial</span>
-                <span class="font-bold text-primary">${Math.round(product.price * 1.5)}</span>
+                <span class="font-bold text-primary">${(product.price * 1.5).toFixed(2)}</span>
               </div>
               <p class="text-sm text-muted-foreground">For client & business use</p>
             </button>
