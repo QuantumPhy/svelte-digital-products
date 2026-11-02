@@ -365,7 +365,7 @@
           <div class="flex items-center gap-3">
             <!-- Sort -->
             <Select.Root type="single" bind:value={sortBy}>
-              <Select.Trigger class="w-[180px]">
+              <Select.Trigger aria-label="Sort products" class="w-[180px]">
                 <ArrowUpDown class="w-4 h-4 mr-2" />
                 <Select.Value placeholder="Sort by" />
               </Select.Trigger>
@@ -451,7 +451,7 @@
                     </Badge>
                   {/if}
                   <div class="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button class="w-8 h-8 bg-white/90 backdrop-blur rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg">
+                    <button aria-label="Favorite product" class="w-8 h-8 bg-white/90 backdrop-blur rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg">
                       <Heart class="w-4 h-4 text-foreground" />
                     </button>
                   </div>
@@ -543,7 +543,7 @@
                         </span>
                       </div>
                       <div class="flex items-center gap-2">
-                        <Button variant="outline" size="icon" class="border-primary/30">
+                        <Button aria-label="Favorite product" variant="outline" size="icon" class="border-primary/30">
                           <Heart class="w-4 h-4" />
                         </Button>
                         <Button class="bg-gradient-to-r from-primary to-accent text-white border-0" href="/products/{product.id}">

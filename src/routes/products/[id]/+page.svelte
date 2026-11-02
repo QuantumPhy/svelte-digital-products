@@ -297,10 +297,10 @@ Whether you're starting fresh or looking to level up your skills, this course pr
             <ShoppingCart class="w-5 h-5 mr-2" />
             Add to Cart
           </Button>
-          <Button size="lg" variant="outline" class="border-primary/30 hover:bg-primary/10 h-14">
+          <Button aria-label="Favorite product" size="lg" variant="outline" class="border-primary/30 hover:bg-primary/10 h-14">
             <Heart class="w-5 h-5" />
           </Button>
-          <Button size="lg" variant="outline" class="border-primary/30 hover:bg-primary/10 h-14">
+          <Button aria-label="Share product" size="lg" variant="outline" class="border-primary/30 hover:bg-primary/10 h-14">
             <Share2 class="w-5 h-5" />
           </Button>
         </div>

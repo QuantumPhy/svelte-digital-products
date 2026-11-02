@@ -296,7 +296,7 @@
                             <p class="text-xs text-muted-foreground">{file.size}</p>
                           </div>
                         </div>
-                        <Button size="icon" variant="ghost" class="opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Button aria-label="Download sample" size="icon" variant="ghost" class="opacity-0 group-hover:opacity-100 transition-opacity">
                           <Download class="w-4 h-4" />
                         </Button>
                       </div>
@@ -314,7 +314,7 @@
                     <Key class="w-4 h-4 mr-2" />
                     View License
                   </Button>
-                  <Button variant="ghost" size="icon">
+                  <Button aria-label="More options" variant="ghost" size="icon">
                     <MoreVertical class="w-4 h-4" />
                   </Button>
                 </div>

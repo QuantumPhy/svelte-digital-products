@@ -433,7 +433,7 @@
             </div>
 
             <div class="flex items-start gap-2">
-              <input type="checkbox" id="attachOrder" class="mt-1" />
+              <input type="checkbox" id="attachOrder" class="mt-1 size-6" />
               <label for="attachOrder" class="text-sm text-muted-foreground">
                 Include my recent purchase history to help resolve the issue faster
               </label>

@@ -181,16 +181,16 @@ import { Chrome, Github } from '../../../lib/icons/cocoding-brands/index.js';
 
 				<p class="text-xs text-center text-muted-foreground">
 					By creating an account, you agree to our
-					<NavigationLink href="/terms" class="text-primary hover:underline">Terms of Service</NavigationLink>
+					<NavigationLink href="/terms" class="text-primary underline underline-offset-2">Terms of Service</NavigationLink>
 					and
-					<NavigationLink href="/privacy" class="text-primary hover:underline">Privacy Policy</NavigationLink>
+					<NavigationLink href="/privacy" class="text-primary underline underline-offset-2">Privacy Policy</NavigationLink>
 				</p>
 			</form>
 		</div>
 
 		<p class="text-center text-sm text-muted-foreground">
 			Already have an account?
-			<NavigationLink href="/auth/login" class="text-primary hover:underline font-medium">
+			<NavigationLink href="/auth/login" class="text-primary underline underline-offset-2 font-medium">
 				Sign in
 			</NavigationLink>
 		</p>

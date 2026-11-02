@@ -180,13 +180,13 @@
                         <span class="text-sm text-muted-foreground">License:</span>
                         <div class="flex bg-muted rounded-lg p-1">
                           <button
-                            class="px-3 py-1 text-sm rounded-md transition-all {item.license === 'personal' ? 'bg-primary text-white' : 'text-muted-foreground hover:text-foreground'}"
+                            class="px-3 py-1 text-sm rounded-md transition-all {item.license === 'personal' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}"
                             onclick={() => item.license !== 'personal' && toggleLicense(item.id)}
                           >
                             Personal
                           </button>
                           <button
-                            class="px-3 py-1 text-sm rounded-md transition-all {item.license === 'commercial' ? 'bg-primary text-white' : 'text-muted-foreground hover:text-foreground'}"
+                            class="px-3 py-1 text-sm rounded-md transition-all {item.license === 'commercial' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}"
                             onclick={() => item.license !== 'commercial' && toggleLicense(item.id)}
                           >
                             Commercial (+50%)
@@ -206,7 +206,7 @@
                         </p>
                       </div>
                       <div class="flex items-center gap-2">
-                        <Button variant="ghost" size="icon" class="text-muted-foreground hover:text-primary">
+                        <Button aria-label="Favorite product" variant="ghost" size="icon" class="text-muted-foreground hover:text-primary">
                           <Heart class="w-4 h-4" />
                         </Button>
                         <Button variant="ghost" size="icon" class="text-muted-foreground hover:text-destructive" onclick={() => removeItem(item.id)}>
@@ -255,7 +255,7 @@
                 <div class="flex justify-between text-sm">
                   <div class="flex items-center gap-2">
                     <span class="text-success-green">Coupon (SAVE10)</span>
-                    <button onclick={removeCoupon} class="text-muted-foreground hover:text-destructive">
+                    <button aria-label="Remove item" onclick={removeCoupon} class="text-muted-foreground hover:text-destructive">
                       <X class="w-3 h-3" />
                     </button>
                   </div>
@@ -335,7 +335,7 @@
                     <span class="font-bold text-primary">${product.price}</span>
                     <span class="text-sm text-muted-foreground line-through ml-1">${product.originalPrice}</span>
                   </div>
-                  <Button size="sm" variant="outline" class="border-primary/30 hover:bg-primary hover:text-white">
+                  <Button aria-label="Increase quantity" size="sm" variant="outline" class="border-primary/30 hover:bg-primary hover:text-white">
                     <Plus class="w-4 h-4" />
                   </Button>
                 </div>

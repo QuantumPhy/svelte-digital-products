@@ -465,7 +465,7 @@
               {product.badge}
             </Badge>
             <div class="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-              <button class="w-8 h-8 bg-white/90 backdrop-blur rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg">
+              <button aria-label="Favorite product" class="w-8 h-8 bg-white/90 backdrop-blur rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg">
                 <Heart class="w-4 h-4 text-foreground" />
               </button>
             </div>
@@ -837,7 +837,7 @@
       Join over 50,000 creators and developers who trust DigitalVault for their digital product needs.
     </p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <Button size="lg" class="bg-white text-primary hover:bg-white/90 shadow-xl border-0 h-14 px-8" href="/products">
+      <Button size="lg" class="bg-white text-electric-purple-dark hover:bg-white/90 shadow-xl border-0 h-14 px-8" href="/products">
         Browse Products
         <ArrowRight class="w-5 h-5 ml-2" />
       </Button>

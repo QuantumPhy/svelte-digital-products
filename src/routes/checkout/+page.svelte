@@ -59,6 +59,7 @@
   <title>Checkout - DigitalVault</title>
 </svelte:head>
 
+<h1 class="sr-only">Sample checkout</h1>
 <!-- Progress Header -->
 <section class="py-4 border-b border-border/50 bg-muted/30">
   <div class="container mx-auto px-4">
@@ -74,7 +75,7 @@
           { num: 3, label: "Confirmation" }
         ] as s}
           <div class="flex items-center gap-2">
-            <div class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold {step >= s.num ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'}">
+            <div class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold {step >= s.num ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}">
               {#if step > s.num}
                 <CheckCircle class="w-4 h-4" />
               {:else}

@@ -106,7 +106,7 @@
       <!-- Right Actions -->
       <div class="flex items-center gap-2">
         <!-- Search -->
-        <Button variant="ghost" size="icon" class="hidden sm:flex hover:bg-primary/10 hover:text-primary">
+        <Button aria-label="Search products" href="/products" variant="ghost" size="icon" class="hidden sm:flex hover:bg-primary/10 hover:text-primary">
           <Search class="w-5 h-5" />
         </Button>
 
@@ -125,7 +125,7 @@
         </Button>
 
         <!-- User Account -->
-        <Button variant="ghost" size="icon" class="hidden sm:flex hover:bg-primary/10 hover:text-primary" href="/account">
+        <Button aria-label="Your account" variant="ghost" size="icon" class="hidden sm:flex hover:bg-primary/10 hover:text-primary" href="/account">
           <User class="w-5 h-5" />
         </Button>
 
@@ -139,7 +139,7 @@
           <Sheet.Root>
             <Sheet.Trigger>
               {#snippet child({ props })}
-                <Button {...props} variant="ghost" size="icon" class="hover:bg-primary/10 hover:text-primary">
+                <Button aria-label="Open menu" {...props} variant="ghost" size="icon" class="hover:bg-primary/10 hover:text-primary">
                   <Menu class="h-6 w-6" />
                 </Button>
               {/snippet}
