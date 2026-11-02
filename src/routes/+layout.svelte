@@ -1,4 +1,7 @@
 <script lang="ts">
+ import {onMount} from 'svelte';
+ import {cart} from '#lib/stores/cart.js';
+ onMount(()=>cart.restore());
  import {catalogProduct} from "#lib/catalog-products.js";
  import {page} from "$app/state";
  import {isStaticPreview} from "#lib/preview.js";

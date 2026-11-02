@@ -1,4 +1,6 @@
 <script lang="ts">
+ import {cart} from "#lib/stores/cart.js";
+ import {catalogProducts} from "#lib/catalog-products.js";
   import { Button } from "#lib/components/ui/button/index.js";
   import * as Card from "#lib/components/ui/card/index.js";
   import { Badge } from "#lib/components/ui/badge/index.js";
@@ -21,41 +23,11 @@
     Lock
   } from "@lucide/svelte";
 
-  let cartItems = $state([
-    {
-      id: 2,
-      name: "Full-Stack Development Masterclass",
-      description: "Complete course with React, Node.js, and PostgreSQL",
-      price: 89,
-      originalPrice: 199,
-      license: "personal",
-      category: "Courses",
-      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=300&h=200&fit=crop&auto=format",
-      author: "David Park"
-    },
-    {
-      id: 3,
-      name: "UI Component Library Pro",
-      description: "500+ customizable React & Vue components",
-      price: 79,
-      originalPrice: 129,
-      license: "commercial",
-      category: "Templates",
-      image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=300&h=200&fit=crop&auto=format",
-      author: "Sarah Miller"
-    },
-    {
-      id: 1,
-      name: "ProCode IDE Theme Bundle",
-      description: "50+ stunning themes for VS Code, JetBrains, and more",
-      price: 29,
-      originalPrice: 49,
-      license: "personal",
-      category: "Software",
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=300&h=200&fit=crop&auto=format",
-      author: "Alex Chen"
-    }
-  ]);
+  const cartItems=$derived($cart.items.flatMap(item=>{
+  const product=catalogProducts.find(p=>p.id===Number(item.id));
+  if(!product)return [];
+  return [{...item,...product,quantity:item.quantity,license:item.variant==='commercial'?'commercial':'personal',color:item.color??'',description:product.description??product.name,originalPrice:product.originalPrice??product.price,deliveryTime:'Sample availability',inStock:product.inStock??true}];
+ }));
 
   let couponCode = $state("");
   let couponApplied = $state(false);
@@ -64,35 +36,22 @@
   const subtotal = $derived(
     cartItems.reduce((sum, item) => {
       const licenseMultiplier = item.license === 'commercial' ? 1.5 : 1;
-      return sum + (item.price * licenseMultiplier);
+      return sum + (item.price * licenseMultiplier * item.quantity);
     }, 0)
   );
 
   const savings = $derived(
     cartItems.reduce((sum, item) => {
       const licenseMultiplier = item.license === 'commercial' ? 1.5 : 1;
-      return sum + ((item.originalPrice - item.price) * licenseMultiplier);
+      return sum + ((item.originalPrice - item.price) * licenseMultiplier * item.quantity);
     }, 0)
   );
 
   const discount = $derived(couponApplied ? subtotal * 0.1 : 0);
   const total = $derived(subtotal - discount);
 
-  function removeItem(id: number) {
-    cartItems = cartItems.filter(item => item.id !== id);
-  }
-
-  function toggleLicense(id: number) {
-    cartItems = cartItems.map(item => {
-      if (item.id === id) {
-        return {
-          ...item,
-          license: item.license === 'personal' ? 'commercial' : 'personal'
-        };
-      }
-      return item;
-    });
-  }
+  function removeItem(id:number,license:string){cart.removeItem(id,license);}
+  function toggleLicense(id:number,license:string){const item=$cart.items.find(x=>x.id===id&&x.variant===license);if(!item)return;cart.removeItem(id,license);cart.addItem({...item,variant:license==='personal'?'commercial':'personal'});}
 
   function applyCoupon() {
     if (couponCode.toUpperCase() === 'SAVE10') {
@@ -152,7 +111,7 @@
       <div class="grid lg:grid-cols-3 gap-8">
         <!-- Cart Items -->
         <div class="lg:col-span-2 space-y-4">
-          {#each cartItems as item (item.id)}
+          {#each cartItems as item (`${item.id}:${item.license}`)}
             <Card.Root class="overflow-hidden border-border/50 bg-card/50 backdrop-blur">
               <div class="flex flex-col sm:flex-row">
                 <!-- Product Image -->
@@ -181,13 +140,13 @@
                         <div class="flex bg-muted rounded-lg p-1">
                           <button
                             class="px-3 py-1 text-sm rounded-md transition-all {item.license === 'personal' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}"
-                            onclick={() => item.license !== 'personal' && toggleLicense(item.id)}
+                            onclick={() => item.license !== 'personal' && toggleLicense(item.id,item.license)}
                           >
                             Personal
                           </button>
                           <button
                             class="px-3 py-1 text-sm rounded-md transition-all {item.license === 'commercial' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}"
-                            onclick={() => item.license !== 'commercial' && toggleLicense(item.id)}
+                            onclick={() => item.license !== 'commercial' && toggleLicense(item.id,item.license)}
                           >
                             Commercial (+50%)
                           </button>
@@ -209,7 +168,7 @@
                         <Button aria-label="Favorite product" variant="ghost" size="icon" class="text-muted-foreground hover:text-primary">
                           <Heart class="w-4 h-4" />
                         </Button>
-                        <Button variant="ghost" size="icon" class="text-muted-foreground hover:text-destructive" onclick={() => removeItem(item.id)}>
+                        <Button variant="ghost" size="icon" class="text-muted-foreground hover:text-destructive" aria-label="Remove item" onclick={() => removeItem(item.id,item.license)}>
                           <Trash2 class="w-4 h-4" />
                         </Button>
                       </div>

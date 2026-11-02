@@ -1,5 +1,7 @@
 import { writable, derived, get } from 'svelte/store';
 import { browser } from '$app/env';
+import {base} from '#lib/template-base.js';
+import {restoredCart} from '#lib/cart-state.js';
 
 export interface CartItem {
 	id: number | string;
@@ -20,38 +22,19 @@ interface CartState {
 	promoDiscount: number;
 }
 
-const CART_STORAGE_KEY = 'cart';
-
-function getInitialState(): CartState {
-	if (browser) {
-		const stored = localStorage.getItem(CART_STORAGE_KEY);
-		if (stored) {
-			try {
-				return JSON.parse(stored);
-			} catch {
-				// Invalid JSON, use default
-			}
-		}
-	}
-	return {
-		items: [],
-		promoCode: null,
-		promoDiscount: 0
-	};
-}
+export const cartStorageKey='cocoding-cart:'+(base||'/');
+const CART_STORAGE_KEY=cartStorageKey;
+function getInitialState():CartState{return {items:[],promoCode:null,promoDiscount:0};}
 
 function createCartStore() {
 	const { subscribe, set, update } = writable<CartState>(getInitialState());
 
-	// Persist to localStorage on changes
-	if (browser) {
-		subscribe((state) => {
-			localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(state));
-		});
-	}
+ let restored=false;
+ if(browser)subscribe(state=>{if(restored)try{localStorage.setItem(CART_STORAGE_KEY,JSON.stringify(state));}catch{/* Keep the usable in-memory cart when storage is blocked. */}});
 
 	return {
 		subscribe,
+  restore:()=>{if(!browser||restored)return;restored=true;try{set(restoredCart(JSON.parse(localStorage.getItem(CART_STORAGE_KEY)||'{}')));}catch{/* Invalid or unavailable storage starts empty. */}},
 
 		addItem: (item: Omit<CartItem, 'quantity'> & { quantity?: number }) => {
 			update((state) => {

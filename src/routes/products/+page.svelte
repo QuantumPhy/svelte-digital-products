@@ -219,13 +219,13 @@
             <div class="flex border border-border rounded-lg">
               <button
                 class="p-2 {viewMode === 'grid' ? 'bg-primary/10 text-primary' : 'hover:bg-muted'} rounded-l-lg transition-colors"
-                onclick={() => viewMode = 'grid'}
+                aria-label="Grid view" onclick={() => viewMode = 'grid'}
               >
                 <Grid class="w-4 h-4" />
               </button>
               <button
                 class="p-2 {viewMode === 'list' ? 'bg-primary/10 text-primary' : 'hover:bg-muted'} rounded-r-lg transition-colors"
-                onclick={() => viewMode = 'list'}
+                aria-label="List view" onclick={() => viewMode = 'list'}
               >
                 <List class="w-4 h-4" />
               </button>

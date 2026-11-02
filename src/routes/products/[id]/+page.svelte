@@ -1,4 +1,5 @@
 <script lang="ts">
+ import {cart} from "#lib/stores/cart.js";
  import type {PageData} from "./$types";
  let {data}:{data:PageData}=$props();
  import NavigationLink from "#lib/components/shared/NavigationLink.svelte";
@@ -302,7 +303,7 @@ Whether you're starting fresh or looking to level up your skills, this course pr
 
         <!-- Actions -->
         <div class="flex flex-col sm:flex-row gap-3 mb-6">
-          <Button size="lg" class="flex-1 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg shadow-primary/25 text-white border-0 h-14" href="/cart">
+          <Button size="lg" class="flex-1 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg shadow-primary/25 text-white border-0 h-14" href="/cart" onclick={()=>cart.addItem({id:product.id,name:product.name,price:product.price,image:product.image,variant:selectedLicense,quantity:1})}>
             <ShoppingCart class="w-5 h-5 mr-2" />
             Add to Cart
           </Button>
@@ -338,17 +339,17 @@ Whether you're starting fresh or looking to level up your skills, this course pr
 <section class="py-12 bg-muted/30">
   <div class="container mx-auto px-4">
     <Tabs.Root value="overview" class="w-full">
-      <Tabs.List class="w-full justify-start bg-transparent border-b border-border rounded-none p-0 mb-8">
-        <Tabs.Trigger value="overview" class="data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none">
+      <Tabs.List class="h-auto flex-wrap w-full justify-start bg-card border-b border-border rounded-none p-0 mb-8">
+        <Tabs.Trigger value="overview" class="data-[state=active]:bg-card data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none">
           Overview
         </Tabs.Trigger>
-        <Tabs.Trigger value="includes" class="data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none">
+        <Tabs.Trigger value="includes" class="data-[state=active]:bg-card data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none">
           What's Included
         </Tabs.Trigger>
-        <Tabs.Trigger value="reviews" class="data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none">
+        <Tabs.Trigger value="reviews" class="data-[state=active]:bg-card data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none">
           Reviews ({product.reviews})
         </Tabs.Trigger>
-        <Tabs.Trigger value="author" class="data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none">
+        <Tabs.Trigger value="author" class="data-[state=active]:bg-card data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none">
           About Author
         </Tabs.Trigger>
       </Tabs.List>
