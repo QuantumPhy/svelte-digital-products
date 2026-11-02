@@ -1,4 +1,6 @@
 <script lang="ts">
+ import type {PageData} from "./$types";
+ let {data}:{data:PageData}=$props();
  import NavigationLink from "#lib/components/shared/NavigationLink.svelte";
   import { Button } from "#lib/components/ui/button/index.js";
   import * as Card from "#lib/components/ui/card/index.js";
@@ -30,7 +32,7 @@
   import { page } from '$app/state';
 
   // Mock product data - in real app would come from API
-  const product = {
+  const detailedProduct = {
     id: 2,
     name: "Full-Stack Development Masterclass",
     description: "A comprehensive course covering everything you need to become a full-stack developer. From React and Node.js to PostgreSQL and deployment.",
@@ -97,7 +99,13 @@ Whether you're starting fresh or looking to level up your skills, this course pr
     level: "Beginner to Advanced"
   };
 
-  const reviews = [
+    const product=$derived.by(()=>{
+   const c=data.product;
+   if(c.id===2)return {...detailedProduct,...c,description:c.description??detailedProduct.description,author:detailedProduct.author,gallery:detailedProduct.gallery};
+   return {...detailedProduct,...c,description:c.description??c.name,longDescription:c.description??c.name,gallery:[c.image],author:{...detailedProduct.author,name:c.author??"Sample creator",avatar:"",role:"Sample creator",bio:"A detailed creator profile has not been supplied for this sample product.",products:0,sales:"Not supplied",rating:0},features:[],includes:[],requirements:[],lastUpdated:"Not supplied",language:"Not supplied",level:"Not supplied"};
+  });
+
+  const providedReviews = [
     {
       id: 1,
       author: "James Wilson",
@@ -167,6 +175,7 @@ Whether you're starting fresh or looking to level up your skills, this course pr
 
   let selectedImage = $state(0);
   let selectedLicense = $state<"personal" | "commercial">("personal");
+ const reviews=$derived(product.id===2?providedReviews:[]);
 </script>
 
 <svelte:head>

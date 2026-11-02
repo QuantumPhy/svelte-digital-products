@@ -9,7 +9,7 @@
 </script>
 
 <svelte:head>
-	<title>Authentication</title>
+	<title>Account access | DigitalVault</title>
 </svelte:head>
 
 <div class="min-h-screen flex items-center justify-center bg-background">

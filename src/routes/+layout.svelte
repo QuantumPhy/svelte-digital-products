@@ -1,7 +1,11 @@
 <script lang="ts">
+ import {catalogProduct} from "#lib/catalog-products.js";
  import {page} from "$app/state";
  import {isStaticPreview} from "#lib/preview.js";
  import {previewCopy} from "#lib/preview-copy.js";
+ const currentProduct=$derived(catalogProduct(page.params.id??""));
+ const routeLabel=$derived((page.route.id??"/").split('/').filter(Boolean).map(part=>part.startsWith('[')?Object.entries(page.params).find(([key])=>key===part.slice(1,-1))?.[1]??part:part).join(' ').replaceAll('-',' ')||"Home");
+ const pageDescription=$derived(currentProduct ? (currentProduct.description??currentProduct.name+" — "+currentProduct.category+" sample catalog entry.") : routeLabel+" — "+"DigitalVault"+" sample storefront. Explore the supplied catalog and local preview information; connected services require configuration.");
  const readOnly=$derived(isStaticPreview&&/^\/(auth|account|checkout|success|tracking|custom-design|gift)(\/|$)/.test(page.route.id??''));
   import "../app.css";
   import Header from "#lib/components/Header.svelte";
@@ -12,7 +16,7 @@
 
 <svelte:head>
   <title>DigitalVault - Premium Digital Products Marketplace</title>
-  <meta name="description" content="Your trusted marketplace for premium digital products. Software, templates, courses, ebooks, and digital assets from top creators worldwide." />
+  <meta name="description" content={pageDescription} />
 </svelte:head>
 
 <div class="min-h-screen flex flex-col dark bg-background text-foreground">
