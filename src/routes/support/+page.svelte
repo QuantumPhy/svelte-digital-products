@@ -361,7 +361,7 @@
               "Refund will be processed to your original payment method"
             ] as step, index}
               <li class="flex items-start gap-3">
-                <span class="w-6 h-6 rounded-full bg-primary text-white text-sm font-bold flex items-center justify-center shrink-0">
+                <span class="w-6 h-6 rounded-full bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center shrink-0">
                   {index + 1}
                 </span>
                 <span class="text-muted-foreground">{step}</span>
